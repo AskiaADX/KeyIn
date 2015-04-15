@@ -1,0 +1,242 @@
+﻿/* standard.css */
+{%
+Dim responseColourPrimary =CurrentADC.PropValue("responseColourPrimary")
+Dim responseColourSecondary =CurrentADC.PropValue("responseColourSecondary")
+Dim fontColour =CurrentADC.PropValue("fontColour")
+Dim responseShadow =CurrentADC.PropValue("responseShadow")
+Dim responseSelectedColourPrimary =CurrentADC.PropValue("responseSelectedColourPrimary")
+Dim responseSelectedColourSecondary =CurrentADC.PropValue("responseSelectedColourSecondary")
+Dim responseSelectedFontColour =CurrentADC.PropValue("responseSelectedFontColour")
+Dim textAlign =CurrentADC.PropValue("textAlign")
+Dim responseSelectedShadow =CurrentADC.PropValue("responseSelectedShadow")
+
+Dim borderColour =CurrentADC.PropValue("borderColour")
+Dim borderThickness =CurrentADC.PropValue("borderThickness")
+Dim borderStyle =CurrentADC.PropValue("borderStyle")
+Dim responseSelectedBorderColour =CurrentADC.PropValue("responseSelectedBorderColour")
+Dim responseSelectedBorderThickness =CurrentADC.PropValue("responseSelectedBorderThickness")
+Dim responseSelectedBorderStyle =CurrentADC.PropValue("responseSelectedBorderStyle")
+Dim imageAlign =CurrentADC.PropValue("imageAlign")
+Dim borderRadius =CurrentADC.PropValue("borderRadius")
+
+Dim nsResponseColourPrimary =CurrentADC.PropValue("nsResponseColourPrimary")
+Dim nsResponseColourSecondary =CurrentADC.PropValue("nsResponseColourSecondary")
+Dim nsfontColour =CurrentADC.PropValue("nsfontColour")
+Dim nsResponseBorderColour =CurrentADC.PropValue("nsResponseBorderColour")
+Dim nsResponseBorderThickness =CurrentADC.PropValue("nsResponseBorderThickness")
+Dim nsResponseBorderStyle =CurrentADC.PropValue("nsResponseBorderStyle")
+Dim nsResponseShadow =CurrentADC.PropValue("nsResponseShadow")
+Dim nsResponseSelectedColourPrimary =CurrentADC.PropValue("nsResponseSelectedColourPrimary")
+Dim nsResponseSelectedColourSecondary =CurrentADC.PropValue("nsResponseSelectedColourSecondary")
+Dim nsResponseSelectedFontColour =CurrentADC.PropValue("nsResponseSelectedFontColour")
+Dim nsResponseSelectedBorderColour =CurrentADC.PropValue("nsResponseSelectedBorderColour")
+Dim nsResponseSelectedBorderThickness =CurrentADC.PropValue("nsResponseSelectedBorderThickness")
+Dim nsResponseSelectedBorderStyle =CurrentADC.PropValue("nsResponseSelectedBorderStyle")
+Dim nsResponseSelectedShadow =CurrentADC.PropValue("nsResponseSelectedShadow")
+
+Dim responseHoverColourPrimary =CurrentADC.PropValue("responseHoverColourPrimary")
+Dim responseHoverColourSecondary =CurrentADC.PropValue("responseHoverColourSecondary")
+Dim responseHoverFontColour =CurrentADC.PropValue("responseHoverFontColour")
+Dim responseHoverBorderColour =CurrentADC.PropValue("responseHoverBorderColour")
+Dim responseHoverBorderThickness =CurrentADC.PropValue("responseHoverBorderThickness")
+Dim responseHoverBorderStyle =CurrentADC.PropValue("responseHoverBorderStyle")
+Dim responseHoverShadow =CurrentADC.PropValue("responseHoverShadow")
+
+Dim showResponseHoverColour =CurrentADC.PropValue("showResponseHoverColour")
+Dim showResponseHoverFontColour =CurrentADC.PropValue("showResponseHoverFontColour")
+Dim showResponseHoverBorder =CurrentADC.PropValue("showResponseHoverBorder")
+
+Dim responseTextPadding =CurrentADC.PropValue("responseTextPadding")
+Dim responseTextLineHeight =CurrentADC.PropValue("responseTextLineHeight")
+
+Dim fontSize =CurrentADC.PropValue("fontSize")
+Dim responseHeight =CurrentADC.PropValue("responseHeight")
+Dim responseWidth =CurrentADC.PropValue("responseWidth")
+
+Dim useRange =CurrentADC.PropValue("useRange")
+
+IF imageAlign = "center" Then
+	imageAlign = "none"
+EndIF
+
+IF responseHeight = "" Then
+	responseHeight = "auto"
+EndIF
+IF responseWidth = "" Then
+	responseWidth = "auto"
+EndIF
+
+Dim percentageWidth
+Dim numberOfColumns =CurrentADC.PropValue("columns").ToNumber()
+IF numberOfColumns > 1 Then
+	percentageWidth = (99/numberOfColumns)
+	percentageWidth = percentageWidth.Floor()
+	responseWidth = percentageWidth.ToString() + "%"
+EndIF
+%}
+
+
+/* Reponses */
+#adc_{%= CurrentQuestion.Id%} .responseItem 
+{   
+    /* Element */
+	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
+	
+	/* Decoration */
+	border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%});
+	background: rgb({%= responseColourPrimary%}); 
+	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= responseColourPrimary%}) ) to( rgb({%= responseColourSecondary%}) )); 
+	background: -webkit-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
+	background: -moz-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
+	background: -ms-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
+	background: -o-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
+	background: linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 	
+	-pie-background: linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) );
+	
+	/* Effects */
+	-webkit-border-radius:	{%= borderRadius%}; 
+	-moz-border-radius:		{%= borderRadius%}; 
+	-khtml-border-radius:	{%= borderRadius%}; 
+	border-radius:			{%= borderRadius%};
+	
+	-webkit-box-shadow: {%= responseShadow%};
+	-moz-box-shadow: {%= responseShadow%};
+	box-shadow: {%= responseShadow%};
+	
+	height: {%= responseHeight%};
+	width: {%= responseWidth%};
+	
+	text-align:{%= textAlign%};
+	
+	z-index: 0;
+}
+
+#adc_{%= CurrentQuestion.Id%} .responseItem:hover
+{
+	/* Element */
+	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
+	
+	/* Decoration */
+	{% IF showResponseHoverBorder = "1" Then %}
+		border: {%= responseHoverBorderThickness%} {%= responseHoverBorderStyle%} rgb({%= responseHoverBorderColour%}) !important;
+	{% Else %}
+		border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%}) !important;
+	{% EndIF %}
+	{% IF showResponseHoverColour = "1" Then %}
+		background: rgb({%= responseHoverColourPrimary%}) !important;
+		background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= responseHoverColourPrimary%}) ) to( rgb({%= responseHoverColourSecondary%}) )) !important;
+		background: -webkit-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
+		background: -moz-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
+		background: -ms-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
+		background: -o-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
+		background: linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
+		-pie-background: linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
+	{% EndIF %}
+	-webkit-box-shadow: {%= responseHoverShadow%};
+	-moz-box-shadow: {%= responseHoverShadow%};
+	box-shadow: {%= responseHoverShadow%};
+}
+
+#adc_{%= CurrentQuestion.Id%} .response_text 
+{ 
+	display:inline-block;
+	font-size:{%= fontSize%};
+	text-align:{%= textAlign%};
+	color:rgb({%= fontColour%});
+	padding:{%= responseTextPadding%};
+	line-height:{%= responseTextLineHeight%};
+}
+
+#adc_{%= CurrentQuestion.Id%} .responseItem:hover .response_text 
+{ 
+	{% IF showResponseHoverFontColour = "1" Then %}
+		color:rgb({%= responseHoverFontColour%}) !important;
+	{% EndIF %}
+}
+
+#adc_{%= CurrentQuestion.Id%} .responseItem img {
+		
+	float: {%= imageAlign%};
+		
+}
+
+#adc_{%= CurrentQuestion.Id%} .responseItem.selected 
+{	
+    /* Decoration */	
+	border: {%= responseSelectedBorderThickness%} {%= responseSelectedBorderStyle%} rgb({%= responseSelectedBorderColour%}) !important;
+	background: rgb({%= responseSelectedColourPrimary%}) !important; 
+	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= responseSelectedColourPrimary%}) ) to( rgb({%= responseSelectedColourSecondary%}) )) !important; 
+	background: -webkit-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important; 
+	background: -moz-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important; 
+	background: -ms-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
+	background: -o-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
+	background: linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
+	-pie-background: linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
+	
+	-webkit-box-shadow: {%= responseSelectedShadow%} !important;
+	-moz-box-shadow: {%= responseSelectedShadow%} !important;
+	box-shadow: {%= responseSelectedShadow%} !important;
+}
+
+#adc_{%= CurrentQuestion.Id%} .responseItem.selected .response_text 
+{
+    color:rgb({%= responseSelectedFontColour%}) !important;
+}
+
+/* Non Scaled Reponses */
+#adc_{%= CurrentQuestion.Id%} .ns 
+{   
+    /* Element */
+	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
+	
+	/* Decoration */
+	border: {%= nsResponseBorderThickness%} {%= nsResponseBorderStyle%} rgb({%= nsResponseBorderColour%});
+	background: rgb({%= nsResponseColourPrimary%}); 
+	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= nsResponseColourPrimary%}) ) to( rgb({%= nsResponseColourSecondary%}) )); 
+	background: -webkit-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
+	background: -moz-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
+	background: -ms-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
+	background: -o-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
+	background: linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 	
+	-pie-background: linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) );
+	
+	/* Effects */
+	-webkit-border-radius:	{%= borderRadius%}; 
+	-moz-border-radius:		{%= borderRadius%}; 
+	-khtml-border-radius:	{%= borderRadius%}; 
+	border-radius:			{%= borderRadius%};
+	
+	-webkit-box-shadow: {%= nsResponseShadow%};
+	-moz-box-shadow: {%= nsResponseShadow%};
+	box-shadow: {%= nsResponseShadow%};
+}
+
+#adc_{%= CurrentQuestion.Id%} .ns .response_text 
+{ 
+	display:block;
+	font-size:{%= fontSize%};
+	color:rgb({%= nsfontColour%});
+}
+
+#adc_{%= CurrentQuestion.Id%} .ns.selected 
+{	
+    /* Decoration */	
+	border: {%= nsResponseSelectedBorderThickness%} {%= nsResponseSelectedBorderStyle%} rgb({%= nsResponseSelectedBorderColour%}) !important;
+	background: rgb({%= nsResponseSelectedColourPrimary%}) !important; 
+	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= nsResponseSelectedColourPrimary%}) ) to( rgb({%= nsResponseSelectedColourSecondary%}) )) !important; 
+	background: -webkit-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
+	background: -moz-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
+	background: -ms-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
+	background: -o-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
+	background: linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 	
+	-pie-background: linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important;
+	
+	-webkit-box-shadow: {%= nsResponseSelectedShadow%} !important;
+	-moz-box-shadow: {%= nsResponseSelectedShadow%} !important;
+	box-shadow: {%= nsResponseSelectedShadow%} !important;
+}
+
+#adc_{%= CurrentQuestion.Id%} .ns.selected .response_text 
+{
+    color:rgb({%= nsResponseSelectedFontColour%}) !important;
+}

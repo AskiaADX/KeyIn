@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+.background-mask {
+	background-color: #000000;
+	opacity: 0.8;
+	text-align:center;
+}
+
+/* Reponses */
+.adc-statements .responseItem 
+{   
+    /* Element */
+	display:block;
+	margin:0 0 5px 0;
+    vertical-align:middle;
+	cursor:pointer;
+	behavior:url(PIE.htc);
+	
+	/* Decoration */
+	border: 1px solid #000;
+	background: #fff; 
+	background: -webkit-gradient(linear, 0 0, 0 100%, from( #fff ) to( #cecece )); 
+	background: -webkit-linear-gradient( #fff , #cecece ); 
+	background: -moz-linear-gradient( 	 #fff , #cecece ); 
+	background: -ms-linear-gradient( 	 #fff , #cecece ); 
+	background: -o-linear-gradient( 	 #fff , #cecece ); 
+	background: linear-gradient( 		 #fff , #cecece ); 	
+	-pie-background: linear-gradient(	 #fff , #cecece ); 
+	
+	/* Effects */
+	-webkit-border-radius:	5px 5px 5px 5px; 
+	-moz-border-radius:		5px 5px 5px 5px; 
+	-khtml-border-radius:	5px 5px 5px 5px; 
+	border-radius:			5px 5px 5px 5px; 
+	
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	
+	/* disable highlight text */
+	-moz-user-select: none; 
+	-webkit-user-select: none; 
+	-ms-user-select:none; 
+	user-select:none;
+	
+	position:relative;
+}
+
+.adc-statements .response_text 
+{ 
+	display:block;
+	padding:10px;
+	line-height:140%;
+	font-size:12px;
+	color:#000;
+}
+.adc-statements .responseItem img 
+{
+	display:inline-block; 
+	margin:5px 20px 5px 5px;
+	float:right;
+}
+
+.adc-statements .responseItem.selected .response_text 
+{
+    color:#fff; 
+}
