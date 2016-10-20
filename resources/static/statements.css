@@ -37,11 +37,6 @@
 	-webkit-backface-visibility: hidden;
 	-webkit-perspective: 1000;
 	
-	/* disable highlight text */
-	-moz-user-select: none; 
-	-webkit-user-select: none; 
-	-ms-user-select:none; 
-	user-select:none;
 	
 	position:relative;
 }
@@ -64,4 +59,26 @@
 .adc-statements .responseItem.selected .response_text 
 {
     color:#fff; 
+}
+
+.adc-statements .otherText { 
+	display:block;
+	margin:10px;
+	line-height:140%;
+	font-size:12px;
+	color:#000;
+	border:2px solid #666;
+	/* Effects */
+	-webkit-border-radius:	5px 5px 5px 5px; 
+	-moz-border-radius:		5px 5px 5px 5px; 
+	-khtml-border-radius:	5px 5px 5px 5px; 
+	border-radius:			5px 5px 5px 5px; 
+	padding:5px;
+	
+	/* disable highlight text */
+	-moz-user-select: text !important;
+	-khtml-user-select: text !important;
+	-webkit-user-select: text !important;
+	-ms-user-select: text !important;
+	user-select: text !important;
 }

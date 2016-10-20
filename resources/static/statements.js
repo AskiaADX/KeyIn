@@ -10,6 +10,9 @@
 		(options.animate = Boolean(options.animate));
 		(options.autoForward = Boolean(options.autoForward));
 		(options.useRange = Boolean(options.useRange));
+		
+		var otherQIDarray = options.otherQID.split(","),
+			otherRIDarray = options.otherRID.split(",");
 						
 		// Delegate .transition() calls to .animate() if the browser can't do CSS transitions.
 		if (!$.support.transition) $.fn.transition = $.fn.animate;
@@ -24,16 +27,47 @@
 			$(this).css({'margin':'0 0 0 auto'});
 		}
 		
+		if ( $(this).parents('.controlContainer').outerWidth() <= 350 ) options.columns = 1;
 		if ( options.columns > 1 )  {
-			/*$('.column').width( (100/options.columns) + '%' ).css('float','left')*/ 
-			$('.column').css({'display':'block','width':'100%'});
-			$('.responseItem').css({'display':'block','float':'left'});
+			// Try to make all the repsonses the same height
+			$(this).find('.responseItem').css('height','');
+			$(this).find('.column').css({'display':'block','width':'100%'});
+			$(this).find('.responseItem').css({'display':'block','float':'left'}).width( (100/options.columns) + '%');
+			var widthDiff = $(this).find('.responseItem').outerWidth(true) - $(this).find('.responseItem').innerWidth();
+			$(this).find('.responseItem').width( (($(this).find('.column').outerWidth() - (widthDiff * options.columns))/options.columns) + "px" );
+			var maxResponseHeight = Math.max.apply( null, $(this).find('.responseItem').map( function () {
+				var thisHeight = $( this ).outerHeight();
+				if ( $(this).find('.otherText').size() > 0 ) thisHeight -= $(this).find('.otherText').outerHeight(true);
+				return thisHeight;
+			}).get() );
+			
+			$(this).find('.responseItem').each(function() {
+				if ( $(this).find('.otherText').size() > 0 ) $(this).css({'height':'auto', 'min-height':maxResponseHeight+'px'});
+                else $(this).css({'height':maxResponseHeight+'px'});
+            });
+		}
+		
+		// Other
+		$(this).parents('.controlContainer').find('.otherText').width( $(this).find('.responseItem').innerWidth() - 30 ).hide();
+		//OLD if ( $( '#'+options.otherQID ).val() !== '' ) $(this).parents('.controlContainer').find('.otherText').val( $( '#'+options.otherQID ).val() );
+		//OLD $( '#'+options.otherQID ).hide();
+		var i;
+		for (i = 0; i < otherQIDarray.length; ++i) {
+			if ( $( '#'+otherQIDarray[i] ).val() !== '' ) 
+				$(this).parents('.controlContainer').find('.responseItem[data-index="'+otherRIDarray[i]+'"] .otherText').val( $( '#'+otherQIDarray[i] ).val() );
+			$( '#'+otherQIDarray[i] ).hide();
 		}
 		
 		// Global variables
 		var $container = $(this),
 			items = options.items,
             isMultiple = options.isMultiple;
+		
+		// Fix column width
+		if ( parseInt(options.columns) > 1 && ( ($(this).find('.responseItem').eq(0).outerWidth(true) * parseInt(options.columns)) >= $(this).find('.column').eq(0).width() ) ) {
+			var colWidthDiff = Math.ceil(($(this).find('.column').eq(0).width() - ($(this).find('.responseItem').eq(0).outerWidth(true) * parseInt(options.columns)))*0.5);
+			$(this).find('.responseItem').width( $(this).find('.responseItem').eq(0).width() - (colWidthDiff + 1));
+		}
 			
 		// Convert RGB to hex
 		function trim(arg) {
@@ -116,8 +150,19 @@
 			$target.addClass('selected');
 			$input.val(value);
 			
+			$(this).parents('.controlContainer').find('.otherText').val('');
+			for (i = 0; i < otherQIDarray.length; ++i) {
+				$( '#'+otherQIDarray[i] ).val('');
+			}
+			$(this).parents('.controlContainer').find('.otherText').hide();
+			
+			if ( $.inArray( String(parseInt($target.data('index'))), otherRIDarray ) != -1 ) {
+				var otherID = $.inArray( String(parseInt($target.data('index'))), otherRIDarray );
+				$(this).find('.otherText').show();
+			}
+			
 			// if auto forward do something
-			if ( options.autoForward ) $(':input[name=Next]:last').click();
+			if ( options.autoForward && $.inArray( String(parseInt($target.data('index'))), otherRIDarray ) == -1 ) $(':input[name=Next]:last').click();
 		}
 		
 		// Select a statement for multiple
@@ -136,6 +181,16 @@
 				$target.removeClass('selected');
 				//$input.prop('checked', false);
 				currentValue = removeValue(currentValue, value);
+				
+				if ( $.inArray( String(parseInt($target.data('index'))), otherRIDarray ) != -1 ) {
+					
+					//FIX
+					var otherID = $.inArray( String(parseInt($target.data('index'))), otherRIDarray );
+					$(this).find('.otherText').hide();
+					$(this).find('.otherText').val('');
+					$( '#'+otherQIDarray[otherID] ).val('');
+				}
+				
 			} else {
 
 				// Select
@@ -144,11 +199,22 @@
 					
 					// Check if any exclusive
 					currentValue = addValue(currentValue, value);
+					var otherID = $.inArray( String(parseInt($(this).data('index'))), otherRIDarray );
+					if ( $.inArray( String(parseInt($target.data('index'))), otherRIDarray ) != -1 ) 
+						$(this).find('.otherText').show();
 
 					// Un-select all exclusives
 					$container.find('.exclusive').each(function forEachExclusives() {
 						$(this).removeClass('selected');
 						currentValue = removeValue(currentValue, $(this).data('value'));
+						
+						if ( $.inArray( String(parseInt($(this).data('index'))), otherRIDarray ) != -1 ) {
+							//FIX
+							var otherID = $.inArray( String(parseInt($(this).data('index'))), otherRIDarray );
+							$(this).find('.otherText').val('');
+							$( '#'+otherQIDarray[otherID] ).val('');
+							$(this).find('.otherText').hide();
+						}
 					});
 
 				} else {
@@ -156,6 +222,15 @@
 					// When exclusive un-select all others
 					$container.find('.selected').removeClass('selected');
 					currentValue = value;
+					
+					if ( $.inArray( String(parseInt($target.data('index'))), otherRIDarray ) == -1 ) {
+						//FIX
+						$(this).parents('.controlContainer').find('.otherText').val('');
+						for (i = 0; i < otherQIDarray.length; ++i) {
+							$( '#'+otherQIDarray[i] ).val('');
+						}
+						$(this).parents('.controlContainer').find('.otherText').hide();
+					} else  $(this).parents('.controlContainer').find('.otherText').show();
 
 				}
 				$target.addClass('selected');
@@ -164,6 +239,32 @@
 			// Update the value
 			$input.val(currentValue);
 		}
+		
+		function writeText() {
+			$( '#'+otherQIDarray[parseInt($(this).data('id'))-1] ).val( $(this).val() );
+		
+		}
+		
+		$( '.otherText' ).focus(function(srcc) {
+			if ($(this).val() == $(this)[0].title) {
+				$(this).removeClass("defaultTextActive");
+				$(this).val("");
+			}
+		});
+		
+		$( '.otherText' ).blur(function() {
+			if ($(this).val() == "") {
+				$(this).addClass("defaultTextActive");
+				$(this).val($(this)[0].title);
+			}
+		});
+		
+		$(this).parents('.controlContainer').find( '.otherText' ).blur();  
+				
+		
+		$(this).parents('.controlContainer').find( '.otherText' ).keyup(writeText).click(function(e) {
+			e.stopPropagation();
+		});
 		
 		// Check for missing images and resize
 		$container.find('.responseItem img').each(function forEachImage() {
@@ -246,6 +347,12 @@
 					isSelected = $(this).data('value') == currentValue ? true : false;
 				if (isSelected) {
 					$(this).addClass('selected');
+					
+					if ( $.inArray( String(parseInt($(this).data('index'))), otherRIDarray ) != -1 ) {
+						var otherID = $.inArray( String(parseInt($(this).data('index'))), otherRIDarray );
+						$(this).parents('.controlContainer').find('.otherText').eq(otherID);
+					}
+					
 				} else {
 					$(this).removeClass('selected');
 				}
@@ -265,6 +372,11 @@
 						isSelected = $(this).data('value') == currentValue ? true : false;
 					if (isSelected) {
 						$(this).addClass('selected');
+						
+						if ( $.inArray( String(parseInt($(this).data('index'))), otherRIDarray ) != -1 ) {
+							var otherID = $.inArray( String(parseInt($(this).data('index'))), otherRIDarray );
+							$(this).parents('.controlContainer').find('.otherText').eq(otherID).show();
+						}
 					}
 				});
 				

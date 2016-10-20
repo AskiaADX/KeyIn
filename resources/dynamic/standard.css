@@ -73,11 +73,20 @@ IF numberOfColumns > 1 Then
 	percentageWidth = percentageWidth.Floor()
 	responseWidth = percentageWidth.ToString() + "%"
 EndIF
+
+Dim otherColourPrimary =CurrentADC.PropValue("otherColourPrimary")
+Dim otherColourSecondary =CurrentADC.PropValue("otherColourSecondary")
+Dim otherFontColour =CurrentADC.PropValue("otherFontColour")
+Dim otherBorderColour =CurrentADC.PropValue("otherBorderColour")
+Dim otherBorderThickness =CurrentADC.PropValue("otherBorderThickness")
+Dim otherBorderStyle =CurrentADC.PropValue("otherBorderStyle")
+Dim otherShadow =CurrentADC.PropValue("otherShadow")
+Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 %}
 
 
 /* Reponses */
-#adc_{%= CurrentQuestion.Id%} .responseItem 
+#adc_{%= CurrentADC.InstanceId %} .responseItem 
 {   
     /* Element */
 	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
@@ -111,7 +120,7 @@ EndIF
 	z-index: 0;
 }
 
-#adc_{%= CurrentQuestion.Id%} .responseItem:hover
+#adc_{%= CurrentADC.InstanceId %} .responseItem:hover
 {
 	/* Element */
 	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
@@ -137,7 +146,7 @@ EndIF
 	box-shadow: {%= responseHoverShadow%};
 }
 
-#adc_{%= CurrentQuestion.Id%} .response_text 
+#adc_{%= CurrentADC.InstanceId %} .response_text 
 { 
 	display:inline-block;
 	font-size:{%= fontSize%};
@@ -147,20 +156,20 @@ EndIF
 	line-height:{%= responseTextLineHeight%};
 }
 
-#adc_{%= CurrentQuestion.Id%} .responseItem:hover .response_text 
+#adc_{%= CurrentADC.InstanceId %} .responseItem:hover .response_text 
 { 
 	{% IF showResponseHoverFontColour = "1" Then %}
 		color:rgb({%= responseHoverFontColour%}) !important;
 	{% EndIF %}
 }
 
-#adc_{%= CurrentQuestion.Id%} .responseItem img {
+#adc_{%= CurrentADC.InstanceId %} .responseItem img {
 		
 	float: {%= imageAlign%};
 		
 }
 
-#adc_{%= CurrentQuestion.Id%} .responseItem.selected 
+#adc_{%= CurrentADC.InstanceId %} .responseItem.selected 
 {	
     /* Decoration */	
 	border: {%= responseSelectedBorderThickness%} {%= responseSelectedBorderStyle%} rgb({%= responseSelectedBorderColour%}) !important;
@@ -178,13 +187,13 @@ EndIF
 	box-shadow: {%= responseSelectedShadow%} !important;
 }
 
-#adc_{%= CurrentQuestion.Id%} .responseItem.selected .response_text 
+#adc_{%= CurrentADC.InstanceId %} .responseItem.selected .response_text 
 {
     color:rgb({%= responseSelectedFontColour%}) !important;
 }
 
 /* Non Scaled Reponses */
-#adc_{%= CurrentQuestion.Id%} .ns 
+#adc_{%= CurrentADC.InstanceId %} .ns 
 {   
     /* Element */
 	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
@@ -211,14 +220,14 @@ EndIF
 	box-shadow: {%= nsResponseShadow%};
 }
 
-#adc_{%= CurrentQuestion.Id%} .ns .response_text 
+#adc_{%= CurrentADC.InstanceId %} .ns .response_text 
 { 
 	display:block;
 	font-size:{%= fontSize%};
 	color:rgb({%= nsfontColour%});
 }
 
-#adc_{%= CurrentQuestion.Id%} .ns.selected 
+#adc_{%= CurrentADC.InstanceId %} .ns.selected 
 {	
     /* Decoration */	
 	border: {%= nsResponseSelectedBorderThickness%} {%= nsResponseSelectedBorderStyle%} rgb({%= nsResponseSelectedBorderColour%}) !important;
@@ -236,7 +245,46 @@ EndIF
 	box-shadow: {%= nsResponseSelectedShadow%} !important;
 }
 
-#adc_{%= CurrentQuestion.Id%} .ns.selected .response_text 
+#adc_{%= CurrentADC.InstanceId %} .ns.selected .response_text 
 {
     color:rgb({%= nsResponseSelectedFontColour%}) !important;
+}
+
+#adc_{%= CurrentADC.InstanceId %} .otherText { 
+	
+	font-size:{%= fontSize%};
+	color: rgb({%= otherFontColour%});
+	
+	/* Decoration */
+	{% IF CurrentADC.PropValue("otherBorderThickness") = "none" Then %}
+		border: none;
+	{% Else %}
+		border: {%= otherBorderThickness%} {%= otherBorderStyle%} rgb({%= otherBorderColour%});
+	{% EndIF %}	
+	background: rgb({%= otherColourPrimary%}); 
+	background: -moz-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%, rgb({%= otherColourSecondary%}) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb({%= otherColourPrimary%})), color-stop(100%,rgb({%= otherColourSecondary%}))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr={%= otherColourPrimary.ToHexa()%}, endColorstr={%= otherColourSecondary.ToHexa()%},GradientType=0 ); /* IE6-8 */
+	
+	/* Effects */
+	-webkit-border-radius:	{%= otherBorderRadius%}; 
+	-moz-border-radius:		{%= otherBorderRadius%}; 
+	-khtml-border-radius:	{%= otherBorderRadius%}; 
+	border-radius:			{%= otherBorderRadius%};
+	
+	-webkit-box-shadow: {%= otherShadow%};
+	-moz-box-shadow: {%= otherShadow%};
+	box-shadow: {%= otherShadow%};
+	
+	/* disable highlight text */
+	-moz-user-select: text !important;
+	-khtml-user-select: text !important;
+	-webkit-user-select: text !important;
+	-ms-user-select: text !important;
+	user-select: text !important;
+	
 }

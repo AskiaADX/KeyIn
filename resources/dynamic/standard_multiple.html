@@ -4,6 +4,7 @@ Dim inputValue
 Dim caption
 Dim entryCode
 Dim image
+Dim index
 Dim attrExclusive
 Dim total
 Dim maxPerColumn
@@ -12,6 +13,10 @@ Dim columnCounter
 Dim ar = CurrentQuestion.AvailableResponses
 Dim i
 Dim j
+Dim k
+Dim otherIDs = CurrentADC.PropValue("otherRID")
+Dim	otherIDarray = otherIDs.Split(",")
+Dim otherID
 %}
 <input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />
 {%
@@ -27,19 +32,27 @@ IF numberOfColumns > 0 Then
         caption     = CurrentQuestion.AvailableResponses[i].Caption
 		entryCode   = CurrentQuestion.AvailableResponses[i].EntryCodeStr
         image		= CurrentQuestion.AvailableResponses.ResourceURL[i]
+        index		= CurrentQuestion.AvailableResponses[i].index
         attrExclusive = On(CurrentQuestion.AvailableResponses[i].IsExclusive, " exclusive", "")
         
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
         {% EndIf %}
         
-        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= i-1 %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+        <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= i-1 %}" data-index="{%= index %}">
             {% IF image <> "" Then %}
                 <img src="{%= image %}" />
             {% EndIF %}
 			<span class="response_text response_entryCode">{%:= entryCode %}</span>
             <span class="response_text">{%:= caption %}</span>
             <div style="clear:both"></div>
+            {% For k = 1 To otherIDarray.Count 
+            	otherID = otherIDarray[k].ToNumber()
+            	IF index = otherID Then %}
+                    <div><textarea class="otherText" data-id="{%= k %}"></textarea></div>
+                    <div style="clear:both"></div>
+                {% EndIF %}
+            {% Next %}
         </div>
         
         {%
@@ -64,15 +77,23 @@ Else
         caption     = CurrentQuestion.AvailableResponses[j].Caption
 		entryCode   = CurrentQuestion.AvailableResponses[j].EntryCodeStr
         image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
+        index		= CurrentQuestion.AvailableResponses[j].index
         attrExclusive = On(CurrentQuestion.AvailableResponses[j].IsExclusive, " exclusive", "")
     %}
-    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" unselectable='on' onselectstart='return false;' onmousedown='return false;'>
+    <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" data-index="{%= index %}">
         {% IF image <> "" Then %}
             <img src="{%= image %}" />
         {% EndIF %}
 		<span class="response_text response_entryCode">{%:= entryCode %}</span>
         <span class="response_text">{%:= caption %}</span>
         <div style="clear:both"></div>
+            {% For k = 1 To otherIDarray.Count 
+            	otherID = otherIDarray[k].ToNumber()
+            	IF index = otherID Then %}
+                    <div><textarea class="otherText" data-id="{%= k %}"></textarea></div>
+                    <div style="clear:both"></div>
+                {% EndIF %}
+            {% Next %}
     </div>
     {% Next %}
     <div style="clear:both"></div>

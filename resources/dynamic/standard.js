@@ -1,7 +1,7 @@
 ﻿/* standard.js */
 $(window).load(function() {
-	$('#adc_{%= CurrentQuestion.Id %}').adcStatements({
-		target : 'jsObj{%= CurrentQuestion.Id%}',
+	$('#adc_{%= CurrentADC.InstanceId %}').adcStatements({
+		target : 'jsObj{%= CurrentADC.InstanceId %}',
 		width : 400,
 		imageAlign : '{%= CurrentADC.PropValue("imageAlign") %}',
 		imageWidth : 100,
@@ -24,6 +24,8 @@ $(window).load(function() {
 		showResponseHoverFontColour: {%= (CurrentADC.PropValue("showResponseHoverFontColour") = "1") %},
 		showResponseHoverBorder: {%= (CurrentADC.PropValue("showResponseHoverBorder") = "1") %},
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
+		otherRID : '{%= CurrentADC.PropValue("otherRID") %}',
+		otherQID : '{%= CurrentADC.PropValue("otherQID") %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourSecondary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangeSecondary") %}',
 		{% EndIF %}
@@ -35,8 +37,8 @@ $(window).load(function() {
 			{% EndIF %}
 		]
 	});
-	$('#adc_{%= CurrentQuestion.Id %}').adcKeyIn({
-		target : 'jsObj{%= CurrentQuestion.Id%}',
+	$('#adc_{%= CurrentADC.InstanceId  %}').adcKeyIn({
+		target : 'jsObj{%= CurrentADC.InstanceId %}',
 		nextItemCode : '{%= CurrentADC.PropValue("nextItemCode") %}',
 		clearItemCode : '{%= CurrentADC.PropValue("clearItemCode") %}',
 		codeViewerDisplay : '{%= CurrentADC.PropValue("codeViewerDisplay") %}',

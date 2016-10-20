@@ -1,6 +1,7 @@
 (function($) {
 
   $.fn.adcKeyIn = function adcKeyIn(options) {
+	var $container = $(this);
     var items = options.items;
     var codeViewerDisplay = options.codeViewerDisplay;
     var maxEntryCodeLength = 1;
@@ -23,7 +24,7 @@
     setupItems();
 
     function modifyResponseCodeLength() {
-      $(".response_entryCode").each(function() {
+      $container.find(".response_entryCode").each(function() {
         var thisEntryCode = $(this).text();
         if (thisEntryCode.length < maxEntryCodeLength) {
           var newText = '0' + $(this).text();
@@ -34,7 +35,8 @@
 
     $(this).bind('keypress', function(e) {
       var keyPressValue = getStringFromKeycode(e);
-
+	  var evt = e || window.event;
+      if (evt.target.tagName === "TEXTAREA") return;
       if (!isNaN(keyPressValue)) { //if keyboard entry is number
         if (currentEntryCode.length < maxEntryCodeLength) {
           currentEntryCode += keyPressValue;
@@ -120,9 +122,8 @@
       var result = $.grep(items, function(e) {
         return e.entryCode == value;
       });
-
       if (result.length >= 1) {
-        $('.responseItem').filter(function() {
+        $container.find('.responseItem').filter(function() {
           return $(this).data("value") == result[0].inputValue;
         }).trigger('click');
       }
