@@ -1,4 +1,4 @@
-﻿/* standard.js */
+/* standard.js */
 $(window).load(function() {
 	$('#adc_{%= CurrentADC.InstanceId %}').adcStatements({
 		target : 'jsObj{%= CurrentADC.InstanceId %}',
@@ -27,7 +27,7 @@ $(window).load(function() {
 		otherRID : '{%= CurrentADC.PropValue("otherRID") %}',
 		otherQID : '{%= CurrentADC.PropValue("otherQID") %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
-			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourSecondary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangeSecondary") %}',
+			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
 		{% EndIF %}
 		items : [
 			{% IF CurrentQuestion.Type = "single" Then %}

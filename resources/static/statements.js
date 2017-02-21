@@ -160,6 +160,9 @@
 				var otherID = $.inArray( String(parseInt($target.data('index'))), otherRIDarray );
 				$(this).find('.otherText').show();
 			}
+            if (window.askia) {
+                askia.triggerAnswer();
+            }
 			
 			// if auto forward do something
 			if ( options.autoForward && $.inArray( String(parseInt($target.data('index'))), otherRIDarray ) == -1 ) $(':input[name=Next]:last').click();
@@ -238,11 +241,17 @@
 
 			// Update the value
 			$input.val(currentValue);
+            
+            if (window.askia) {
+                askia.triggerAnswer();
+            }
 		}
 		
 		function writeText() {
 			$( '#'+otherQIDarray[parseInt($(this).data('id'))-1] ).val( $(this).val() );
-		
+			if (window.askia) {
+                askia.triggerAnswer();
+            }
 		}
 		
 		$( '.otherText' ).focus(function(srcc) {
@@ -265,6 +274,7 @@
 		$(this).parents('.controlContainer').find( '.otherText' ).keyup(writeText).click(function(e) {
 			e.stopPropagation();
 		});
+            
 		
 		// Check for missing images and resize
 		$container.find('.responseItem img').each(function forEachImage() {
@@ -331,7 +341,6 @@
 				$(this).css({ 'background': '-ms-linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
 				$(this).css({ 'background': '-o-linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
 				$(this).css({ 'background': 'linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
-				$(this).css({ '-pie-background': 'linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
 				$(this).addClass('active').removeClass('active');
 			});
 		}

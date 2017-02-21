@@ -1,11 +1,9 @@
-﻿/* standard.css */
+/* standard.css */
 {%
 Dim responseColourPrimary =CurrentADC.PropValue("responseColourPrimary")
-Dim responseColourSecondary =CurrentADC.PropValue("responseColourSecondary")
 Dim fontColour =CurrentADC.PropValue("fontColour")
 Dim responseShadow =CurrentADC.PropValue("responseShadow")
 Dim responseSelectedColourPrimary =CurrentADC.PropValue("responseSelectedColourPrimary")
-Dim responseSelectedColourSecondary =CurrentADC.PropValue("responseSelectedColourSecondary")
 Dim responseSelectedFontColour =CurrentADC.PropValue("responseSelectedFontColour")
 Dim textAlign =CurrentADC.PropValue("textAlign")
 Dim responseSelectedShadow =CurrentADC.PropValue("responseSelectedShadow")
@@ -20,14 +18,12 @@ Dim imageAlign =CurrentADC.PropValue("imageAlign")
 Dim borderRadius =CurrentADC.PropValue("borderRadius")
 
 Dim nsResponseColourPrimary =CurrentADC.PropValue("nsResponseColourPrimary")
-Dim nsResponseColourSecondary =CurrentADC.PropValue("nsResponseColourSecondary")
 Dim nsfontColour =CurrentADC.PropValue("nsfontColour")
 Dim nsResponseBorderColour =CurrentADC.PropValue("nsResponseBorderColour")
 Dim nsResponseBorderThickness =CurrentADC.PropValue("nsResponseBorderThickness")
 Dim nsResponseBorderStyle =CurrentADC.PropValue("nsResponseBorderStyle")
 Dim nsResponseShadow =CurrentADC.PropValue("nsResponseShadow")
 Dim nsResponseSelectedColourPrimary =CurrentADC.PropValue("nsResponseSelectedColourPrimary")
-Dim nsResponseSelectedColourSecondary =CurrentADC.PropValue("nsResponseSelectedColourSecondary")
 Dim nsResponseSelectedFontColour =CurrentADC.PropValue("nsResponseSelectedFontColour")
 Dim nsResponseSelectedBorderColour =CurrentADC.PropValue("nsResponseSelectedBorderColour")
 Dim nsResponseSelectedBorderThickness =CurrentADC.PropValue("nsResponseSelectedBorderThickness")
@@ -35,7 +31,6 @@ Dim nsResponseSelectedBorderStyle =CurrentADC.PropValue("nsResponseSelectedBorde
 Dim nsResponseSelectedShadow =CurrentADC.PropValue("nsResponseSelectedShadow")
 
 Dim responseHoverColourPrimary =CurrentADC.PropValue("responseHoverColourPrimary")
-Dim responseHoverColourSecondary =CurrentADC.PropValue("responseHoverColourSecondary")
 Dim responseHoverFontColour =CurrentADC.PropValue("responseHoverFontColour")
 Dim responseHoverBorderColour =CurrentADC.PropValue("responseHoverBorderColour")
 Dim responseHoverBorderThickness =CurrentADC.PropValue("responseHoverBorderThickness")
@@ -75,7 +70,6 @@ IF numberOfColumns > 1 Then
 EndIF
 
 Dim otherColourPrimary =CurrentADC.PropValue("otherColourPrimary")
-Dim otherColourSecondary =CurrentADC.PropValue("otherColourSecondary")
 Dim otherFontColour =CurrentADC.PropValue("otherFontColour")
 Dim otherBorderColour =CurrentADC.PropValue("otherBorderColour")
 Dim otherBorderThickness =CurrentADC.PropValue("otherBorderThickness")
@@ -88,19 +82,10 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 /* Reponses */
 #adc_{%= CurrentADC.InstanceId %} .responseItem 
 {   
-    /* Element */
-	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
 	
 	/* Decoration */
 	border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%});
-	background: rgb({%= responseColourPrimary%}); 
-	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= responseColourPrimary%}) ) to( rgb({%= responseColourSecondary%}) )); 
-	background: -webkit-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
-	background: -moz-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
-	background: -ms-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
-	background: -o-linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 
-	background: linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) ); 	
-	-pie-background: linear-gradient( rgb({%= responseColourPrimary%}) , rgb({%= responseColourSecondary%}) );
+	background-color: rgb({%= responseColourPrimary%});
 	
 	/* Effects */
 	-webkit-border-radius:	{%= borderRadius%}; 
@@ -122,24 +107,15 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 
 #adc_{%= CurrentADC.InstanceId %} .responseItem:hover
 {
-	/* Element */
-	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
 	
 	/* Decoration */
 	{% IF showResponseHoverBorder = "1" Then %}
-		border: {%= responseHoverBorderThickness%} {%= responseHoverBorderStyle%} rgb({%= responseHoverBorderColour%}) !important;
+		border: {%= responseHoverBorderThickness%} {%= responseHoverBorderStyle%} rgb({%= responseHoverBorderColour%});
 	{% Else %}
-		border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%}) !important;
+		border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%});
 	{% EndIF %}
 	{% IF showResponseHoverColour = "1" Then %}
-		background: rgb({%= responseHoverColourPrimary%}) !important;
-		background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= responseHoverColourPrimary%}) ) to( rgb({%= responseHoverColourSecondary%}) )) !important;
-		background: -webkit-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
-		background: -moz-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
-		background: -ms-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
-		background: -o-linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
-		background: linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
-		-pie-background: linear-gradient( rgb({%= responseHoverColourPrimary%}) , rgb({%= responseHoverColourSecondary%}) ) !important;
+		background-color: rgb({%= responseHoverColourPrimary%});
 	{% EndIF %}
 	-webkit-box-shadow: {%= responseHoverShadow%};
 	-moz-box-shadow: {%= responseHoverShadow%};
@@ -159,7 +135,7 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 #adc_{%= CurrentADC.InstanceId %} .responseItem:hover .response_text 
 { 
 	{% IF showResponseHoverFontColour = "1" Then %}
-		color:rgb({%= responseHoverFontColour%}) !important;
+		color:rgb({%= responseHoverFontColour%});
 	{% EndIF %}
 }
 
@@ -172,42 +148,26 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 #adc_{%= CurrentADC.InstanceId %} .responseItem.selected 
 {	
     /* Decoration */	
-	border: {%= responseSelectedBorderThickness%} {%= responseSelectedBorderStyle%} rgb({%= responseSelectedBorderColour%}) !important;
-	background: rgb({%= responseSelectedColourPrimary%}) !important; 
-	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= responseSelectedColourPrimary%}) ) to( rgb({%= responseSelectedColourSecondary%}) )) !important; 
-	background: -webkit-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important; 
-	background: -moz-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important; 
-	background: -ms-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
-	background: -o-linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
-	background: linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
-	-pie-background: linear-gradient( rgb({%= responseSelectedColourPrimary%}) , rgb({%= responseSelectedColourSecondary%}) ) !important;
+	border: {%= responseSelectedBorderThickness%} {%= responseSelectedBorderStyle%} rgb({%= responseSelectedBorderColour%});
+	background-color: rgb({%= responseSelectedColourPrimary%});
 	
-	-webkit-box-shadow: {%= responseSelectedShadow%} !important;
-	-moz-box-shadow: {%= responseSelectedShadow%} !important;
-	box-shadow: {%= responseSelectedShadow%} !important;
+	-webkit-box-shadow: {%= responseSelectedShadow%};
+	-moz-box-shadow: {%= responseSelectedShadow%};
+	box-shadow: {%= responseSelectedShadow%};
 }
 
 #adc_{%= CurrentADC.InstanceId %} .responseItem.selected .response_text 
 {
-    color:rgb({%= responseSelectedFontColour%}) !important;
+    color:rgb({%= responseSelectedFontColour%});
 }
 
 /* Non Scaled Reponses */
 #adc_{%= CurrentADC.InstanceId %} .ns 
 {   
-    /* Element */
-	behavior:url({%= CurrentADC.URLTo("static/PIE.htc") %});
 	
 	/* Decoration */
 	border: {%= nsResponseBorderThickness%} {%= nsResponseBorderStyle%} rgb({%= nsResponseBorderColour%});
-	background: rgb({%= nsResponseColourPrimary%}); 
-	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= nsResponseColourPrimary%}) ) to( rgb({%= nsResponseColourSecondary%}) )); 
-	background: -webkit-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
-	background: -moz-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
-	background: -ms-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
-	background: -o-linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 
-	background: linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) ); 	
-	-pie-background: linear-gradient( rgb({%= nsResponseColourPrimary%}) , rgb({%= nsResponseColourSecondary%}) );
+	background-color: rgb({%= nsResponseColourPrimary%});
 	
 	/* Effects */
 	-webkit-border-radius:	{%= borderRadius%}; 
@@ -230,24 +190,17 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 #adc_{%= CurrentADC.InstanceId %} .ns.selected 
 {	
     /* Decoration */	
-	border: {%= nsResponseSelectedBorderThickness%} {%= nsResponseSelectedBorderStyle%} rgb({%= nsResponseSelectedBorderColour%}) !important;
-	background: rgb({%= nsResponseSelectedColourPrimary%}) !important; 
-	background: -webkit-gradient(linear, 0 0, 0 100%, from( rgb({%= nsResponseSelectedColourPrimary%}) ) to( rgb({%= nsResponseSelectedColourSecondary%}) )) !important; 
-	background: -webkit-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
-	background: -moz-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
-	background: -ms-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
-	background: -o-linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 
-	background: linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important; 	
-	-pie-background: linear-gradient( rgb({%= nsResponseSelectedColourPrimary%}) , rgb({%= nsResponseSelectedColourSecondary%}) ) !important;
+	border: {%= nsResponseSelectedBorderThickness%} {%= nsResponseSelectedBorderStyle%} rgb({%= nsResponseSelectedBorderColour%});
+	background-color: rgb({%= nsResponseSelectedColourPrimary%});
 	
-	-webkit-box-shadow: {%= nsResponseSelectedShadow%} !important;
-	-moz-box-shadow: {%= nsResponseSelectedShadow%} !important;
-	box-shadow: {%= nsResponseSelectedShadow%} !important;
+	-webkit-box-shadow: {%= nsResponseSelectedShadow%};
+	-moz-box-shadow: {%= nsResponseSelectedShadow%};
+	box-shadow: {%= nsResponseSelectedShadow%};
 }
 
 #adc_{%= CurrentADC.InstanceId %} .ns.selected .response_text 
 {
-    color:rgb({%= nsResponseSelectedFontColour%}) !important;
+    color:rgb({%= nsResponseSelectedFontColour%});
 }
 
 #adc_{%= CurrentADC.InstanceId %} .otherText { 
@@ -261,14 +214,7 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 	{% Else %}
 		border: {%= otherBorderThickness%} {%= otherBorderStyle%} rgb({%= otherBorderColour%});
 	{% EndIF %}	
-	background: rgb({%= otherColourPrimary%}); 
-	background: -moz-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%, rgb({%= otherColourSecondary%}) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb({%= otherColourPrimary%})), color-stop(100%,rgb({%= otherColourSecondary%}))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgb({%= otherColourPrimary%}) 0%,rgb({%= otherColourSecondary%}) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr={%= otherColourPrimary.ToHexa()%}, endColorstr={%= otherColourSecondary.ToHexa()%},GradientType=0 ); /* IE6-8 */
+	background-color: rgb({%= otherColourPrimary%});
 	
 	/* Effects */
 	-webkit-border-radius:	{%= otherBorderRadius%}; 
