@@ -334,13 +334,7 @@
 				rainbow2.setSpectrum(processRgb(rangeArray[1]), processRgb(rangeArray[3]));
 				rainbow2.setNumberRange(0, maxNumber);
 			$('.responseItem').slice(0,(options.numberNS > 0)?0-options.numberNS:$('.responseItem').size()).each(function( index ) {
-				$(this).css({ 'background': '#'+rainbow1.colourAt(index) });
-				$(this).css({ 'background': '-webkit-gradient(linear, 0 0, 0 100%, from(#'+rainbow1.colourAt(index)+') to(#'+rainbow2.colourAt(index)+'))' });
-				$(this).css({ 'background': '-webkit-linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
-				$(this).css({ 'background': '-moz-linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
-				$(this).css({ 'background': '-ms-linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
-				$(this).css({ 'background': '-o-linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
-				$(this).css({ 'background': 'linear-gradient(#'+rainbow1.colourAt(index)+',#'+rainbow2.colourAt(index)+')' });
+				$(this).css({ 'background-color': '#'+rainbow1.colourAt(index) });
 				$(this).addClass('active').removeClass('active');
 			});
 		}

@@ -115,7 +115,7 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 		border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%});
 	{% EndIF %}
 	{% IF showResponseHoverColour = "1" Then %}
-		background-color: rgb({%= responseHoverColourPrimary%});
+		background-color: rgb({%= responseHoverColourPrimary%}) !important;
 	{% EndIF %}
 	-webkit-box-shadow: {%= responseHoverShadow%};
 	-moz-box-shadow: {%= responseHoverShadow%};
@@ -149,7 +149,7 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 {	
     /* Decoration */	
 	border: {%= responseSelectedBorderThickness%} {%= responseSelectedBorderStyle%} rgb({%= responseSelectedBorderColour%});
-	background-color: rgb({%= responseSelectedColourPrimary%});
+	background-color: rgb({%= responseSelectedColourPrimary%}) !important;
 	
 	-webkit-box-shadow: {%= responseSelectedShadow%};
 	-moz-box-shadow: {%= responseSelectedShadow%};
