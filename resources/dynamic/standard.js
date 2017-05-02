@@ -26,6 +26,7 @@ $(window).load(function() {
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
 		otherRID : '{%= CurrentADC.PropValue("otherRID") %}',
 		otherQID : '{%= CurrentADC.PropValue("otherQID") %}',
+      	currentQuestion: '{%:= CurrentQuestion.Shortcut %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
 		{% EndIF %}

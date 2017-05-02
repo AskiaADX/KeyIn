@@ -10,6 +10,7 @@
 		(options.animate = Boolean(options.animate));
 		(options.autoForward = Boolean(options.autoForward));
 		(options.useRange = Boolean(options.useRange));
+        (options.currentQuestion = options.currentQuestion || '');
 		
 		var otherQIDarray = options.otherQID.split(","),
 			otherRIDarray = options.otherRID.split(",");
@@ -160,7 +161,10 @@
 				var otherID = $.inArray( String(parseInt($target.data('index'))), otherRIDarray );
 				$(this).find('.otherText').show();
 			}
-            if (window.askia) {
+            if (window.askia 
+                && window.arrLiveRoutingShortcut 
+                && window.arrLiveRoutingShortcut.length > 0
+                && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
 			
@@ -242,14 +246,20 @@
 			// Update the value
 			$input.val(currentValue);
             
-            if (window.askia) {
+            if (window.askia 
+                && window.arrLiveRoutingShortcut 
+                && window.arrLiveRoutingShortcut.length > 0
+                && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
 		}
 		
 		function writeText() {
 			$( '#'+otherQIDarray[parseInt($(this).data('id'))-1] ).val( $(this).val() );
-			if (window.askia) {
+            if (window.askia 
+                && window.arrLiveRoutingShortcut 
+                && window.arrLiveRoutingShortcut.length > 0
+                && window.arrLiveRoutingShortcut.indexOf(options.currentQuestion) >= 0) {
                 askia.triggerAnswer();
             }
 		}
