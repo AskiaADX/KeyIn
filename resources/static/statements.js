@@ -343,7 +343,7 @@
 			var rainbow2 = new Rainbow();
 				rainbow2.setSpectrum(processRgb(rangeArray[1]), processRgb(rangeArray[3]));
 				rainbow2.setNumberRange(0, maxNumber);
-			$('.responseItem').slice(0,(options.numberNS > 0)?0-options.numberNS:$('.responseItem').size()).each(function( index ) {
+			$('.responseItem').slice(0,(options.numberNS > 0)?$('.responseItem').size()-options.numberNS:$('.responseItem').size()).each(function( index ) {
 				$(this).css({ 'background-color': '#'+rainbow1.colourAt(index) });
 				$(this).addClass('active').removeClass('active');
 			});

@@ -182,16 +182,16 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 
 #adc_{%= CurrentADC.InstanceId %} .ns .response_text 
 { 
-	display:block;
+	display: inline-block;
 	font-size:{%= fontSize%};
 	color:rgb({%= nsfontColour%});
 }
 
-#adc_{%= CurrentADC.InstanceId %} .ns.selected 
+#adc_{%= CurrentADC.InstanceId %} .responseItem.ns.selected 
 {	
     /* Decoration */	
 	border: {%= nsResponseSelectedBorderThickness%} {%= nsResponseSelectedBorderStyle%} rgb({%= nsResponseSelectedBorderColour%});
-	background-color: rgb({%= nsResponseSelectedColourPrimary%});
+	background-color: rgb({%= nsResponseSelectedColourPrimary%}) !important;
 	
 	-webkit-box-shadow: {%= nsResponseSelectedShadow%};
 	-moz-box-shadow: {%= nsResponseSelectedShadow%};
