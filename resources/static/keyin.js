@@ -37,7 +37,7 @@
       var keyPressValue = getStringFromKeycode(e);
 	  var evt = e || window.event;
       if (evt.target.tagName === "TEXTAREA") return;
-      if (!isNaN(keyPressValue)) { //if keyboard entry is number
+      if ((!isNaN(keyPressValue)) || (keyPressValue === '-')) { //if keyboard entry is number
         if (currentEntryCode.length < maxEntryCodeLength) {
           currentEntryCode += keyPressValue;
         } else {
