@@ -1,11 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
 .background-mask {
-	background-color: #000000;
 	opacity: 0.8;
 	text-align:center;
     margin-bottom: 5px;
     padding: 5px;
+    letter-spacing: 3px;
 }
 
 /* Reponses */

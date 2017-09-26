@@ -7,7 +7,7 @@
   <info>
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <date>2015-01-06</date>
     <description><![CDATA[KeyIn ADC2
 		v1.0.7 - Added other please specify options.
@@ -461,23 +461,25 @@
       </property>
     </category>
     <category id="KeyIn" name="KeyIn">
-      <property xsi:type="standardProperty" id="nextItemCode" name="next Item Code" type="string" mode="static" require="false" visible="true">
+      <property xsi:type="standardProperty" id="nextItemCode" name="Next item code" type="string" mode="static" require="false" visible="true">
         <description><![CDATA[Set next Item Code]]></description>
         <value><![CDATA[n]]></value>
       </property>
-      <property xsi:type="standardProperty" id="clearItemCode" name="clear Item Code" type="string" mode="static" require="false" visible="true">
+      <property xsi:type="standardProperty" id="clearItemCode" name="Clear item code" type="string" mode="static" require="false" visible="true">
         <description><![CDATA[Set clear Item Code]]></description>
         <value><![CDATA[c]]></value>
       </property>
-      <property xsi:type="standardProperty" id="codeViewerDisplay" name="code Viewer Display" type="string" mode="static">
-        <description><![CDATA[
-          code Viewer Display
-        ]]></description>
+      <property xsi:type="standardProperty" id="codeViewerDisplay" name="Code viewer display" type="string" mode="static" require="false" visible="true">
+        <description><![CDATA[code Viewer Display]]></description>
         <value><![CDATA[inline-block]]></value>
         <options>
           <option value="inline-block" text="inline-block" />
           <option value="none" text="none" />
         </options>
+      </property>
+      <property xsi:type="standardProperty" id="codeViewerBackgroundColor" name="Code viewer background color" type="color" mode="dynamic" require="true" visible="false">
+        <description><![CDATA[Code viewer background color]]></description>
+        <value><![CDATA[{%= Theme.PrimaryDarkColor %}]]></value>
       </property>
     </category>
   </properties>

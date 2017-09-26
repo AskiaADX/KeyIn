@@ -39,7 +39,8 @@ $(window).load(function() {
 		]
 	});
 	$('#adc_{%= CurrentADC.InstanceId  %}').adcKeyIn({
-		target : 'jsObj{%= CurrentADC.InstanceId %}',
+		instanceId : {%= CurrentADC.InstanceId %},
+        target : 'jsObj{%= CurrentADC.InstanceId %}',
 		nextItemCode : '{%= CurrentADC.PropValue("nextItemCode") %}',
 		clearItemCode : '{%= CurrentADC.PropValue("clearItemCode") %}',
 		codeViewerDisplay : '{%= CurrentADC.PropValue("codeViewerDisplay") %}',

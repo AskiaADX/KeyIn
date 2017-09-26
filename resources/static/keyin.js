@@ -4,6 +4,7 @@
 	var $container = $(this);
     var items = options.items;
     var codeViewerDisplay = options.codeViewerDisplay;
+    var instanceId = options.instanceId;
     var maxEntryCodeLength = 1;
     var currentEntryCode = "";
 
@@ -62,7 +63,7 @@
     });
 
     function prependWithDashes(givenString) {
-      var pattern = '-';
+      var pattern = '_';
       var count = maxEntryCodeLength - givenString.length;
       if (count < 1) {
         return givenString;
@@ -75,7 +76,7 @@
     }
 
     function getMaxDashes() {
-      var pattern = '-';
+      var pattern = '_';
       var count = maxEntryCodeLength;
       if (count < 1) {
         return '';
@@ -97,7 +98,13 @@
 
     $(this).prepend('<div id="background-mask" class="background-mask"><span>' + getMaxDashes() + '</span></div>');
 
-    $('.background-mask span').css({
+    if (codeViewerDisplay === 'none') {
+        $('#adc_' + instanceId + ' .background-mask').css({
+            "display": codeViewerDisplay
+        });   
+    }
+      
+    $('#adc_' + instanceId + ' .background-mask span').css({
       "display": codeViewerDisplay,
       "vertical-align": "middle",
       "line-height": "normal",

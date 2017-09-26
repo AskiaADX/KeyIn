@@ -1,5 +1,8 @@
 /* standard.css */
 {%
+
+Dim codeViewerBackgroundColor = CurrentADC.PropValue("codeViewerBackgroundColor")
+
 Dim responseColourPrimary =CurrentADC.PropValue("responseColourPrimary")
 Dim fontColour =CurrentADC.PropValue("fontColour")
 Dim responseShadow =CurrentADC.PropValue("responseShadow")
@@ -124,7 +127,7 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 
 #adc_{%= CurrentADC.InstanceId %} .response_text 
 { 
-	display:inline-block;
+	display: table-cell;
 	font-size:{%= fontSize%};
 	text-align:{%= textAlign%};
 	color:rgb({%= fontColour%});
@@ -233,4 +236,7 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 	-ms-user-select: text !important;
 	user-select: text !important;
 	
+}
+#adc_{%= CurrentADC.InstanceId %} .background-mask {
+	background-color: rgb({%= codeViewerBackgroundColor %});
 }
