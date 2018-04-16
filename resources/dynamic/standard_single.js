@@ -1,4 +1,4 @@
-﻿/* standard_single.js */
+/* standard_single.js */
 {% 
 Dim i 
 Dim ar = CurrentQuestion.AvailableResponses
@@ -13,5 +13,5 @@ For i = 1 To ar.Count
 	caption   = ar[i].Caption
 	entryCode   = ar[i].EntryCodeStr
 %}
-{caption : "{%= caption %}", entryCode : "{%= entryCode %}", inputValue : "{%= inputValue %}", element : $('#{%= inputName%}')}{%= On(i < ar.Count, ",", "") %}
+{entryCode : "{%= entryCode %}", inputValue : "{%= inputValue %}", element : $('#{%= inputName%}')}{%= On(i < ar.Count, ",", "") %}
 {% Next %}
