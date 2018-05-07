@@ -33,9 +33,9 @@
 			// Try to make all the repsonses the same height
 			$(this).find('.responseItem').css('height','');
 			$(this).find('.column').css({'display':'block','width':'100%'});
-			$(this).find('.responseItem').css({'display':'block','float':'left'}).width( (100/options.columns) + '%');
+			$(this).find('.responseItem').css({'display':'inline-block'}).width( (100/options.columns) + '%');
 			var widthDiff = $(this).find('.responseItem').outerWidth(true) - $(this).find('.responseItem').innerWidth();
-			$(this).find('.responseItem').width( (($(this).find('.column').outerWidth() - (widthDiff * options.columns))/options.columns) + "px" );
+			$(this).find('.responseItem').width( (($(this).find('.column').outerWidth() - (widthDiff * options.columns))/options.columns) - 10 + "px" );
 			var maxResponseHeight = Math.max.apply( null, $(this).find('.responseItem').map( function () {
 				var thisHeight = $( this ).outerHeight();
 				if ( $(this).find('.otherText').size() > 0 ) thisHeight -= $(this).find('.otherText').outerHeight(true);
