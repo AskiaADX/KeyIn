@@ -1,4 +1,4 @@
-﻿{%
+{%
 Dim useList   = (CurrentADC.PropValue("useList") = "1") ' Convert to boolean
 Dim inputName = CurrentQuestion.InputName()
 Dim inputValue
@@ -39,7 +39,7 @@ If useList Then %}
             </td><td>
             	<label for="{%= inputId %}">
             	{% IF (resource <> "") Then %}
-					<img src="{%= resource %}" style="vertical-align:middle" />
+                    <img src="{%= resource %}" style="vertical-align:middle" alt="{%:= caption %}"/>
                 {% EndIf %}
                 {%:= caption %}</label>
             </td>

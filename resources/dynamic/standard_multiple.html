@@ -49,7 +49,7 @@ IF numberOfColumns > 0 Then
         
         <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}">
             {% IF image <> "" Then %}
-                <img src="{%= image %}" />
+            <img src="{%= image %}" alt="{%:= caption %}"/>
             {% EndIF %}
 			<span class="response_text response_entryCode">{%:= entryCode %}</span>
             <span class="response_text">{%:= caption %}</span>
@@ -57,7 +57,7 @@ IF numberOfColumns > 0 Then
             {% For k = 1 To otherIDarray.Count 
             	otherID = otherIDarray[k].ToNumber()
             	IF index = otherID Then %}
-                    <div><textarea class="otherText" data-id="{%= k %}"></textarea></div>
+                    <div><label for="textarea_{%= k%}" style="display:none;">Other</label><textarea id="textarea_{%= k %}" class="otherText" data-id="{%= k %}"></textarea></div>
                     <div style="clear:both"></div>
                 {% EndIF %}
             {% Next %}
@@ -90,7 +90,7 @@ Else
     %}
     <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" data-index="{%= index %}">
         {% IF image <> "" Then %}
-            <img src="{%= image %}" />
+        <img src="{%= image %}"  alt="{%:= caption %}"/>
         {% EndIF %}
 		<span class="response_text response_entryCode">{%:= entryCode %}</span>
         <span class="response_text">{%:= caption %}</span>
@@ -98,7 +98,7 @@ Else
             {% For k = 1 To otherIDarray.Count 
             	otherID = otherIDarray[k].ToNumber()
             	IF index = otherID Then %}
-                    <div><textarea class="otherText" data-id="{%= k %}"></textarea></div>
+                    <div><label for="textarea_{%= k%}" style="display:none;">Other</label><textarea id="textarea_{%= k%}" class="otherText" data-id="{%= k %}"></textarea></div>
                     <div style="clear:both"></div>
                 {% EndIF %}
             {% Next %}

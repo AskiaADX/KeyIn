@@ -16,7 +16,8 @@
 		v2.0.0 - Theme implementation.
 		v2.0.3 - Fixed hover styling for small screen
 		v2.0.4 - Fixed carriage return
-		v2.0.5 - Added Flow direction]]></description>
+		v2.0.5 - Added Flow direction
+		v2.0.6 - Added hidden labels to inputs]]></description>
     <company>Askia</company>
     <author><![CDATA[Michael Long <michael@askia.com>		Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
