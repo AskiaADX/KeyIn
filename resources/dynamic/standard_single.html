@@ -52,7 +52,7 @@ IF numberOfColumns > 0 Then
             {% For k = 1 To otherIDarray.Count 
             	otherID = otherIDarray[k].ToNumber()
             	IF index = otherID Then %}
-            	<div><label for="textarea_{%= k%}" style="display:none;">Other</label><textarea id="textarea_{%= k%}" class="otherText" data-id="{%= k %}"></textarea></div>
+            	<div><textarea aria-label="Other" class="otherText" data-id="{%= k %}"></textarea></div>
                     <div style="clear:both"></div>
                 {% EndIF %}
             {% Next %}
@@ -92,7 +92,7 @@ Else
             {% For k = 1 To otherIDarray.Count 
             	otherID = otherIDarray[k].ToNumber()
             	IF index = otherID Then %}
-                    <div><label for="textarea_{%= k%}" style="display:none;">Other</label><textarea id="textarea_{%= k %}" class="otherText" data-id="{%= k %}"></textarea></div>
+                    <div><textarea aria-label="Other" class="otherText" data-id="{%= k %}"></textarea></div>
                     <div style="clear:both"></div>
                 {% EndIF %}
             {% Next %}
