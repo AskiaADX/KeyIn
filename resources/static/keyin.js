@@ -112,7 +112,7 @@
     });
 
     if (document.activeElement.className != 'adc-statements') {
-      $(this).focus();
+      //$(this).focus();
       $(this).find('#background-mask').css('opacity', '0.8');
     } else {
       $(this).find('#background-mask').css('opacity', '0.2');
