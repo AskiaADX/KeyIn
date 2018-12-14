@@ -7,7 +7,7 @@
   <info>
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
-    <version>2.0.8</version>
+    <version>3.0.0</version>
     <date>2015-01-06</date>
     <description><![CDATA[KeyIn ADC2
 		v1.0.7 - Added other please specify options.
@@ -28,7 +28,7 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" />
+      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" RequireLoopDepth="false" />
       <constraint on="controls" responseblock="true" checkbox="false" label="false" listbox="false" radiobutton="false" textbox="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
