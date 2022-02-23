@@ -7,8 +7,8 @@
   <info>
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
-    <version>3.0.0</version>
-    <date>2015-01-06</date>
+    <version>3.0.1</version>
+    <date>2022-02-24</date>
     <description><![CDATA[KeyIn ADC2
 		v1.0.7 - Added other please specify options.
 		v1.0.8 - Fixed keypress when typing in the textarea.
@@ -19,7 +19,9 @@
 		v2.0.5 - Added Flow direction
 		v2.0.6 - Added hidden labels to inputs
 		v2.0.7 - Fixed closing div
-		v2.0.8 - Fixed focus issue on long lists]]></description>
+		v2.0.8 - Fixed focus issue on long lists
+    v3.0.1 - Fixed other-text overidden issue on single closed questions
+    ]]></description>
     <company>Askia</company>
     <author><![CDATA[Michael Long <michael@askia.com>		Jerome Duparc <jeromed@askia.com>]]></author>
     <site>http://www.askia.com</site>
