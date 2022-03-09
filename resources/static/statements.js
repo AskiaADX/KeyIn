@@ -10,7 +10,8 @@
 		(options.animate = Boolean(options.animate));
 		(options.autoForward = Boolean(options.autoForward));
 		(options.useRange = Boolean(options.useRange));
-        (options.currentQuestion = options.currentQuestion || '');
+    (options.currentQuestion = options.currentQuestion || '');
+    (options.deselectionEnabled = Boolean(options.deselectionEnabled));
 
 		var otherQIDarray = options.otherQID.split(","),
 			otherRIDarray = options.otherRID.split(",");
@@ -149,9 +150,14 @@
 				$target = $(this),
 				value = $target.data('value');
 
-			$container.find('.selected').removeClass('selected');
-			$target.addClass('selected');
-			$input.val(value);
+			if (options.deselectionEnabled && $target.hasClass('selected')) {
+				$target.removeClass('selected');
+				$input.val('');
+            } else {
+                $container.find('.selected').removeClass('selected');
+                $target.addClass('selected');
+                $input.val(value);
+            }
 
 			$(this).parents('.controlContainer').find('.otherText').val('');
 			for (i = 0; i < otherQIDarray.length; ++i) {

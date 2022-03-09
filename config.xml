@@ -7,8 +7,8 @@
   <info>
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
-    <version>3.0.1</version>
-    <date>2022-02-24</date>
+    <version>3.0.2</version>
+    <date>2022-03-09</date>
     <description><![CDATA[KeyIn ADC2
 		v1.0.7 - Added other please specify options.
 		v1.0.8 - Fixed keypress when typing in the textarea.
@@ -20,10 +20,12 @@
 		v2.0.6 - Added hidden labels to inputs
 		v2.0.7 - Fixed closing div
 		v2.0.8 - Fixed focus issue on long lists
+    v3.0.0 -
     v3.0.1 - Fixed other-text overidden issue on single closed questions
+    v3.0.2 - Deselcetion of single answers
     ]]></description>
     <company>Askia</company>
-    <author><![CDATA[Michael Long <michael@askia.com>		Jerome Duparc <jeromed@askia.com>]]></author>
+    <author><![CDATA[Michael Long <michael@askia.com>		Jerome Duparc <jeromed@askia.com>  Prabath Gamage <prabath@askia.com>]]></author>
     <site>http://www.askia.com</site>
     <helpURL>https://dev.askia.com</helpURL>
     <categories>
@@ -175,6 +177,14 @@
         <description><![CDATA[Use a select list to enumerate all available responses.
             This option works with closed and numeric questions.
             For numeric question, the range between bounds should be inferior than 20. It take in account the step option.]]></description>
+        <value><![CDATA[0]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="deselectionEnabled" name="Deselection enabled - single" type="string" mode="dynamic" require="true" visible="true">
+        <description><![CDATA[Enable the deselection of the statement for single-coded questions]]></description>
         <value><![CDATA[0]]></value>
         <options>
           <option value="1" text="Yes" />

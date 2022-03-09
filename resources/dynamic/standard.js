@@ -26,6 +26,7 @@ $(window).load(function() {
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
 		otherRID : '{%= CurrentADC.PropValue("otherRID") %}',
 		otherQID : '{%= CurrentADC.PropValue("otherQID") %}',
+		deselectionEnabled : {%= (CurrentADC.PropValue("deselectionEnabled") = "1") %},
       	currentQuestion: '{%:= CurrentQuestion.Shortcut %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
@@ -43,6 +44,7 @@ $(window).load(function() {
         target : 'jsObj{%= CurrentADC.InstanceId %}',
 		nextItemCode : '{%= CurrentADC.PropValue("nextItemCode") %}',
 		clearItemCode : '{%= CurrentADC.PropValue("clearItemCode") %}',
+		deselectionEnabled : {%= (CurrentADC.PropValue("deselectionEnabled") = "1") %},
 		codeViewerDisplay : '{%= CurrentADC.PropValue("codeViewerDisplay") %}',
 		items : [
 			{% IF CurrentQuestion.Type = "single" Then %}
