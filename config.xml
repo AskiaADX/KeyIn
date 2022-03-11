@@ -8,7 +8,7 @@
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
     <version>3.0.2</version>
-    <date>2022-03-09</date>
+    <date>2022-03-11</date>
     <description><![CDATA[KeyIn ADC2
 		v1.0.7 - Added other please specify options.
 		v1.0.8 - Fixed keypress when typing in the textarea.
@@ -185,7 +185,7 @@
       </property>
       <property xsi:type="standardProperty" id="deselectionEnabled" name="Deselection enabled - single" type="string" mode="dynamic" require="true" visible="true">
         <description><![CDATA[Enable the deselection of the statement for single-coded questions]]></description>
-        <value><![CDATA[0]]></value>
+        <value><![CDATA[1]]></value>
         <options>
           <option value="1" text="Yes" />
           <option value="0" text="No" />
