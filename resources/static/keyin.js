@@ -10,6 +10,8 @@
 
     var nextItemCode = options.nextItemCode;
     var clearItemCode = options.clearItemCode;
+              
+    (options.deselectionEnabled = Boolean(options.deselectionEnabled));
 
     function setupItems() {
       for (var i = 0; i < items.length; i++) {
@@ -57,6 +59,11 @@
           $(this).find('#background-mask span').text(getMaxDashes());
         } else if (keyPressValue == clearItemCode) {
           currentEntryCode = "";
+          if (options.deselectionEnabled3) {
+            $container.find('.responseItem').filter(function() {
+              return $(this).data("value") == items[0].element.val();
+            }).trigger('click');
+          }
           $(this).find('#background-mask span').text(getMaxDashes());
         }
       }
