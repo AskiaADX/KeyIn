@@ -10,7 +10,7 @@
 
     var nextItemCode = options.nextItemCode;
     var clearItemCode = options.clearItemCode;
-              
+
     (options.deselectionEnabled = Boolean(options.deselectionEnabled));
 
     function setupItems() {
@@ -36,7 +36,7 @@
       });
     }
 
-    $(this).bind('keypress', function(e) {
+    $(this).on('keypress', function(e) {
       var keyPressValue = getStringFromKeycode(e);
 	  var evt = e || window.event;
       if (evt.target.tagName === "TEXTAREA") return;
@@ -108,9 +108,9 @@
     if (codeViewerDisplay === 'none') {
         $('#adc_' + instanceId + ' .background-mask').css({
             "display": codeViewerDisplay
-        });   
+        });
     }
-      
+
     $('#adc_' + instanceId + ' .background-mask span').css({
       "display": codeViewerDisplay,
       "vertical-align": "middle",
@@ -125,10 +125,10 @@
       $(this).find('#background-mask').css('opacity', '0.2');
     }
 
-    $(this).focusout(function() {
+    $(this).on('focusout', function() {
       $(this).find('#background-mask').css('opacity', '0.2');
     });
-    $(this).focusin(function() {
+    $(this).on('focusin', function() {
       $(this).find('#background-mask').css('opacity', '0.8');
     });
 

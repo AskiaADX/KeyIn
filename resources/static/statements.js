@@ -39,12 +39,12 @@
 			$(this).find('.responseItem').width( (($(this).find('.column').outerWidth() - (widthDiff * options.columns))/options.columns) - 10 + "px" );
 			var maxResponseHeight = Math.max.apply( null, $(this).find('.responseItem').map( function () {
 				var thisHeight = $( this ).outerHeight();
-				if ( $(this).find('.otherText').size() > 0 ) thisHeight -= $(this).find('.otherText').outerHeight(true);
+				if ( $(this).find('.otherText').length > 0 ) thisHeight -= $(this).find('.otherText').outerHeight(true);
 				return thisHeight;
 			}).get() );
 
 			$(this).find('.responseItem').each(function() {
-				if ( $(this).find('.otherText').size() > 0 ) $(this).css({'height':'auto', 'min-height':maxResponseHeight+'px'});
+				if ( $(this).find('.otherText').length > 0 ) $(this).css({'height':'auto', 'min-height':maxResponseHeight+'px'});
                 else $(this).css({'height':maxResponseHeight+'px'});
             });
 		}
@@ -55,11 +55,13 @@
 		//OLD $( '#'+options.otherQID ).hide();
 		var i;
 		for (i = 0; i < otherQIDarray.length; ++i) {
-			if ( $( '#'+otherQIDarray[i] ).val() !== '' )
-				$(this).parents('.controlContainer').find('.responseItem[data-index="'+otherRIDarray[i]+'"] .otherText').val( $( '#'+otherQIDarray[i] ).val() ),
-					$($(this).parents('.controlContainer').find('.responseItem[data-index="'+otherRIDarray[i]+'"] .otherText')).css("display", "inline");
+			if (otherQIDarray[i]) {
+				if ( $( '#'+otherQIDarray[i] ).val() !== '' )
+					$(this).parents('.controlContainer').find('.responseItem[data-index="'+otherRIDarray[i]+'"] .otherText').val( $( '#'+otherQIDarray[i] ).val() ),
+						$($(this).parents('.controlContainer').find('.responseItem[data-index="'+otherRIDarray[i]+'"] .otherText')).css("display", "inline");
 
-			$( '#'+otherQIDarray[i] ).hide();
+				$( '#'+otherQIDarray[i] ).hide();
+			}
 		}
 
 		// Global variables
@@ -161,7 +163,8 @@
 
 			$(this).parents('.controlContainer').find('.otherText').val('');
 			for (i = 0; i < otherQIDarray.length; ++i) {
-				$( '#'+otherQIDarray[i] ).val('');
+				if(otherQIDarray[i])
+				 	$( '#'+otherQIDarray[i] ).val('');
 			}
 			$(this).parents('.controlContainer').find('.otherText').hide();
 
@@ -272,24 +275,24 @@
             }
 		}
 
-		$( '.otherText' ).focus(function(srcc) {
+		$( '.otherText' ).on('focus', function(srcc) {
 			if ($(this).val() == $(this)[0].title) {
 				$(this).removeClass("defaultTextActive");
 				$(this).val("");
 			}
 		});
 
-		$( '.otherText' ).blur(function() {
+		$( '.otherText' ).on('blur', function() {
 			if ($(this).val() == "") {
 				$(this).addClass("defaultTextActive");
 				$(this).val($(this)[0].title);
 			}
 		});
 
-		$(this).parents('.controlContainer').find( '.otherText' ).blur();
+		$(this).parents('.controlContainer').find( '.otherText' ).trigger( "blur" );
 
 
-		$(this).parents('.controlContainer').find( '.otherText' ).keyup(writeText).click(function(e) {
+		$(this).parents('.controlContainer').find( '.otherText' ).on('keyup', writeText).on('click', function(e) {
 			e.stopPropagation();
 		});
 
@@ -342,7 +345,7 @@
 
 		// Use range if on
 		if ( options.useRange ) {
-			var maxNumber = $('.responseItem').size() - options.numberNS;
+			var maxNumber = $('.responseItem').length - options.numberNS;
 			var rangeArray = options.range.split(';');
 
 			var rainbow1 = new Rainbow();
@@ -351,7 +354,7 @@
 			var rainbow2 = new Rainbow();
 				rainbow2.setSpectrum(processRgb(rangeArray[1]), processRgb(rangeArray[3]));
 				rainbow2.setNumberRange(0, maxNumber);
-			$('.responseItem').slice(0,(options.numberNS > 0)?$('.responseItem').size()-options.numberNS:$('.responseItem').size()).each(function( index ) {
+			$('.responseItem').slice(0,(options.numberNS > 0)?$('.responseItem').length-options.numberNS:$('.responseItem').length).each(function( index ) {
 				$(this).css({ 'background-color': '#'+rainbow1.colourAt(index) });
 				$(this).addClass('active').removeClass('active');
 			});
