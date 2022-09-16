@@ -7,23 +7,9 @@
   <info>
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
-    <version>3.0.2</version>
-    <date>2022-03-11</date>
-    <description><![CDATA[KeyIn ADC2
-		v1.0.7 - Added other please specify options.
-		v1.0.8 - Fixed keypress when typing in the textarea.
-		v1.0.9 - Fixed negative entry code.
-		v2.0.0 - Theme implementation.
-		v2.0.3 - Fixed hover styling for small screen
-		v2.0.4 - Fixed carriage return
-		v2.0.5 - Added Flow direction
-		v2.0.6 - Added hidden labels to inputs
-		v2.0.7 - Fixed closing div
-		v2.0.8 - Fixed focus issue on long lists
-    v3.0.0 -
-    v3.0.1 - Fixed other-text overidden issue on single closed questions
-    v3.0.2 - Deselcetion of single answers
-    ]]></description>
+    <version>3.1.0</version>
+    <date>2022-09-13</date>
+    <description><![CDATA[KeyIn ADC2]]></description>
     <company>Askia</company>
     <author><![CDATA[Michael Long <michael@askia.com>		Jerome Duparc <jeromed@askia.com>  Prabath Gamage <prabath@askia.com>]]></author>
     <site>http://www.askia.com</site>
@@ -61,18 +47,18 @@
       <content fileName="standard.html" type="html" mode="dynamic" position="placeholder" />
       <content fileName="standard_single.html" type="html" mode="dynamic" position="none" />
       <content fileName="standard_multiple.html" type="html" mode="dynamic" position="none" />
-      <content fileName="es5-shim.min.js" type="javascript" mode="share" position="head">
+      <content fileName="es5-shim.min.js" type="javascript" mode="static" position="head">
         <yield><![CDATA[
           <!--[if lt IE 10]>
-            <script type="text/javascript" src="{%= CurrentADC.URLTo("share/es5-shim.min.js") %}"></script>
+            <script type="text/javascript" src="{%= CurrentADC.URLTo("static/es5-shim.min.js") %}"></script>
             <![endif]-->
         ]]></yield>
       </content>
-      <content fileName="jquery-1.11.0.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery-ui-1.10.4.custom.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery.ui.touch-punch.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="jquery.transit.min.js" type="javascript" mode="share" position="head" />
-      <content fileName="rainbowvis.js" type="javascript" mode="share" position="head" />
+      <content fileName="jquery-3.6.0.min.js" type="javascript" mode="static" position="head" />
+      <content fileName="jquery-ui.min.js" type="javascript" mode="static" position="head" />
+      <content fileName="jquery.ui.touch-punch.min.js" type="javascript" mode="static" position="head" />
+      <content fileName="jquery.transit.min.js" type="javascript" mode="static" position="head" />
+      <content fileName="rainbowvis.js" type="javascript" mode="static" position="head" />
       <content fileName="statements.js" type="javascript" mode="static" position="head" />
       <content fileName="standard.js" type="javascript" mode="dynamic" position="foot" />
       <content fileName="standard_single.js" type="javascript" mode="dynamic" position="none" />
