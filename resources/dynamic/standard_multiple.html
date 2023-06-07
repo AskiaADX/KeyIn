@@ -8,16 +8,25 @@ Dim index
 Dim attrExclusive
 Dim total
 Dim maxPerColumn
-Dim remainder
 Dim columnCounter
 Dim ar = CurrentQuestion.AvailableResponses
 Dim i
 Dim j
 Dim k
 Dim flowDirection
-Dim otherIDs = CurrentADC.PropValue("otherRID")
-Dim	otherIDarray = otherIDs.Split(",")
+
+Dim	otherIDarray As NumberArray
+Dim arrOpenValues As StringArray
+Dim arrOpenNames As StringArray
 Dim otherID
+
+For i = 1 to ar.Count
+    If (ar[i].isOpen = True) Then
+        arrOpenValues.Push(ar[i].OpenQuestion.InputValue())
+        arrOpenNames.Push(ar[i].OpenQuestion.InputName())
+        otherIDarray.Push(ar[i].Index)
+    Endif
+Next i
 %}
 <input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />
 {%
@@ -57,7 +66,10 @@ IF numberOfColumns > 0 Then
             {% For k = 1 To otherIDarray.Count 
             	otherID = otherIDarray[k].ToNumber()
             	IF index = otherID Then %}
-                    <div><textarea aria-label="Other" class="otherText" data-id="{%= k %}"></textarea></div>
+                    <div style="overflow:hidden">
+                        <textarea aria-label="Other" class="otherText"  id="{%= ar[flowDirection].OpenQuestion.InputName() %}" 
+                            name="{%= ar[flowDirection].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= ar[flowDirection].OpenQuestion.inputValue() %}</textarea>
+                    </div>
                     <div style="clear:both"></div>
                 {% EndIF %}
             {% Next %}
@@ -97,7 +109,10 @@ Else
             {% For k = 1 To otherIDarray.Count 
             	otherID = otherIDarray[k].ToNumber()
             	IF index = otherID Then %}
-                    <div><textarea aria-label="Other" class="otherText" data-id="{%= k %}"></textarea></div>
+                    <div>
+                        <textarea aria-label="Other" class="otherText"  id="{%= ar[j].OpenQuestion.InputName() %}" 
+                            name="{%= ar[j].OpenQuestion.InputName() %}" data-id="{%= k %}">{%= ar[j].OpenQuestion.inputValue() %}</textarea>
+                    </div>
                     <div style="clear:both"></div>
                 {% EndIF %}
             {% Next %}

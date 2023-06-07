@@ -7,8 +7,8 @@
   <info>
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
-    <version>3.1.0</version>
-    <date>2022-09-13</date>
+    <version>4.0.0</version>
+    <date>2023-06-07</date>
     <description><![CDATA[KeyIn ADC2]]></description>
     <company>Askia</company>
     <author><![CDATA[Michael Long <michael@askia.com>		Jerome Duparc <jeromed@askia.com>  Prabath Gamage <prabath@askia.com>]]></author>
@@ -18,7 +18,7 @@
       <category>General</category>
     </categories>
     <constraints>
-      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" requireLoopDepth="0" />
+      <constraint on="questions" single="true" multiple="true" chapter="false" date="false" numeric="false" open="false" requireParentLoop="false" requireLoopDepth="0"  manageHeader="true" manageSemiOpen="true"/>
       <constraint on="controls" responseblock="true" checkbox="false" label="false" listbox="false" radiobutton="false" textbox="false" />
       <constraint on="responses" max="*" min="*" />
     </constraints>
@@ -179,16 +179,6 @@
       </property>
     </category>
     <category id="other" name="Other Response">
-      <property xsi:type="standardProperty" id="otherQID" name="Other Question ID" type="string" mode="static">
-        <description><![CDATA[
-          The ids of the other responses seperated by commas
-        ]]></description>
-        <value></value>
-      </property>
-      <property xsi:type="standardProperty" id="otherRID" name="Other Response ID" type="string" mode="static" require="false" visible="true">
-        <description><![CDATA[The ids of the other responses separated by commas]]></description>
-        <value></value>
-      </property>
       <property xsi:type="standardProperty" id="otherColourPrimary" name="Other Background Colour" type="color" mode="dynamic" require="true" visible="false">
         <description><![CDATA[Background colour of the other response]]></description>
         <value><![CDATA[{%= Theme.WhiteColor %}]]></value>

@@ -1,5 +1,25 @@
 /* standard.js */
 $(window).on('load', function() {
+
+	{%
+		Dim i
+		
+		Dim strOtherRID = ""
+		Dim strOtherQID = ""
+		
+		Dim ar = CurrentQuestion.AvailableResponses
+		For i = 1 to ar.Count
+			If ar[i].isOpen = True Then
+				If strOtherRID <> "" Then
+					strOtherRID = strOtherRID + ","
+					strOtherQID = strOtherQID + ","
+				Endif
+				strOtherRID = strOtherRID + ar[i].Index
+				strOtherQID = strOtherQID + ar[i].OpenQuestion.InputName()
+			Endif
+		Next i	
+	%}
+
 	$('#adc_{%= CurrentADC.InstanceId %}').adcStatements({
 		target : 'jsObj{%= CurrentADC.InstanceId %}',
 		width : 400,
@@ -24,8 +44,8 @@ $(window).on('load', function() {
 		showResponseHoverFontColour: {%= (CurrentADC.PropValue("showResponseHoverFontColour") = "1") %},
 		showResponseHoverBorder: {%= (CurrentADC.PropValue("showResponseHoverBorder") = "1") %},
 		controlAlign : '{%= CurrentADC.PropValue("controlAlign") %}',
-		otherRID : '{%= CurrentADC.PropValue("otherRID") %}',
-		otherQID : '{%= CurrentADC.PropValue("otherQID") %}',
+        otherRID : '{%= strOtherRID %}',
+		otherQID : '{%= strOtherQID %}',
 		deselectionEnabled : {%= (CurrentADC.PropValue("deselectionEnabled") = "1") %},
       	currentQuestion: '{%:= CurrentQuestion.Shortcut %}',
 		{% IF CurrentADC.PropValue("useRange") = "1" Then %}
