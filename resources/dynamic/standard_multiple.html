@@ -14,6 +14,7 @@ Dim i
 Dim j
 Dim k
 Dim flowDirection
+Dim isHeader
 
 Dim	otherIDarray As NumberArray
 Dim arrOpenValues As StringArray
@@ -51,16 +52,21 @@ IF numberOfColumns > 0 Then
         image		= CurrentQuestion.AvailableResponses.ResourceURL[flowDirection]
         index		= CurrentQuestion.AvailableResponses[flowDirection].index
         attrExclusive = On(CurrentQuestion.AvailableResponses[flowDirection].IsExclusive, " exclusive", "")
+        isHeader    = CurrentQuestion.AvailableResponses[flowDirection].IsHeader
         
         if ( (columnCounter mod numberOfColumns) = 0 ) Then %}
         	<div class="column">
         {% EndIf %}
         
+        {% If (isHeader = true) Then %}
+        <div class="responseHeader" onmousedown="return false;" data-id="{%= flowDirection-1 %}" data-index="{%= index %}">
+        {% Else %}
         <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= flowDirection-1 %}" data-index="{%= index %}">
+        {% EndIf %}
             {% IF image <> "" Then %}
             <img src="{%= image %}" alt="{%:= caption %}"/>
             {% EndIF %}
-			<span class="response_text response_entryCode">{%:= entryCode %}</span>
+			{% If (isHeader <> true) Then %}<span class="response_text response_entryCode">{%:= entryCode %}</span>{% EndIf %}
             <span class="response_text">{%:= caption %}</span>
             <div style="clear:both"></div>
             {% For k = 1 To otherIDarray.Count 
@@ -98,12 +104,18 @@ Else
         image		= CurrentQuestion.AvailableResponses.ResourceURL[j]
         index		= CurrentQuestion.AvailableResponses[j].index
         attrExclusive = On(CurrentQuestion.AvailableResponses[j].IsExclusive, " exclusive", "")
+        isHeader    = CurrentQuestion.AvailableResponses[j].IsHeader
     %}
+
+    {% If (isHeader = true) Then %}
+    <div class="responseHeader" onmousedown="return false;" data-id="{%= j-1 %}" data-index="{%= index %}">
+    {% Else %}
     <div class="responseItem{%= attrExclusive %}" data-value="{%= inputValue %}" data-id="{%= j-1 %}" data-index="{%= index %}">
+    {% EndIf %}    
         {% IF image <> "" Then %}
         <img src="{%= image %}"  alt="{%:= caption %}"/>
         {% EndIF %}
-		<span class="response_text response_entryCode">{%:= entryCode %}</span>
+        {% If (isHeader <> true) Then %}<span class="response_text response_entryCode">{%:= entryCode %}</span>{% EndIf %}
         <span class="response_text">{%:= caption %}</span>
         <div style="clear:both"></div>
             {% For k = 1 To otherIDarray.Count 

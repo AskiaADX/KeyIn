@@ -8,7 +8,7 @@
     <name>KeyIn</name>
     <guid>18e19dbd-6857-4ca0-aea0-5d91deb14c20</guid>
     <version>4.0.0</version>
-    <date>2023-06-07</date>
+    <date>2023-06-08</date>
     <description><![CDATA[KeyIn ADC2]]></description>
     <company>Askia</company>
     <author><![CDATA[Michael Long <michael@askia.com>		Jerome Duparc <jeromed@askia.com>  Prabath Gamage <prabath@askia.com>]]></author>
@@ -506,5 +506,27 @@
         <value><![CDATA[{%= Theme.PrimaryDarkColor %}]]></value>
       </property>
     </category>
+    <category id="headers" name="Headers (non clickable responses)">
+      <property xsi:type="standardProperty" id="showHeaders" name="Show Headers" type="string" require="false" visible="true">
+        <description><![CDATA[]]></description>
+        <value><![CDATA[1]]></value>
+        <options>
+          <option value="1" text="Yes" />
+          <option value="0" text="No" />
+        </options>
+      </property>
+      <property xsi:type="standardProperty" id="headerColourPrimary" name="Header Background Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Background colour of the header item]]></description>
+        <value><![CDATA[{%= Theme.NeutralDarkColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerHoverColourPrimary" name="Header Hover Background Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Hover background colour of the header item]]></description>
+        <value><![CDATA[{%= Theme.NeutralColor %}]]></value>
+      </property>
+      <property xsi:type="standardProperty" id="headerFontColour" name="Header Font Colour" type="color" mode="dynamic" visible="true">
+        <description><![CDATA[Header colour]]></description>
+        <value><![CDATA[{%= Theme.BlackColor %}]]></value>
+      </property>
+    </category>    
   </properties>
 </control>

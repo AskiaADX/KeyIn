@@ -56,3 +56,4 @@
 #### v4.0.0
 
 - Semi-open support
+- Headers support
