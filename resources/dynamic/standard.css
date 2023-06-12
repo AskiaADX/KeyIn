@@ -79,6 +79,10 @@ Dim otherBorderThickness =CurrentADC.PropValue("otherBorderThickness")
 Dim otherBorderStyle =CurrentADC.PropValue("otherBorderStyle")
 Dim otherShadow =CurrentADC.PropValue("otherShadow")
 Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
+
+Dim headerColourPrimary =CurrentADC.PropValue("headerColourPrimary")
+Dim headerFontColour =CurrentADC.PropValue("headerFontColour")
+Dim headerHoverColourPrimary = CurrentADC.PropValue("headerHoverColourPrimary")
 %}
 
 
@@ -258,4 +262,42 @@ Dim otherBorderRadius =CurrentADC.PropValue("otherBorderRadius")
 }
 #adc_{%= CurrentADC.InstanceId %} .background-mask {
 	background-color: rgb({%= codeViewerBackgroundColor %});
+}
+
+/* Headers */
+#adc_{%= CurrentADC.InstanceId%} .responseHeader
+{
+	/* Decoration */
+	{% IF CurrentADC.PropValue("borderThickness") = "none" Then %}
+		border: none;
+	{% Else %}
+		border: {%= borderThickness%} {%= borderStyle%} rgb({%= borderColour%});
+	{% EndIF %}
+	background-color: rgb({%= headerColourPrimary%});
+
+	/* Effects */
+	-webkit-border-radius:	{%= borderRadius%};
+	-moz-border-radius:		{%= borderRadius%};
+	-khtml-border-radius:	{%= borderRadius%};
+	border-radius:			{%= borderRadius%};
+
+	-webkit-box-shadow: {%= responseShadow%};
+	-moz-box-shadow: {%= responseShadow%};
+	box-shadow: {%= responseShadow%};
+
+	height: {%= responseHeight%};
+	width: {%= responseWidth%};
+
+	margin-top: 0.3rem;
+	margin-bottom: 0.3rem;
+	z-index: 0;
+
+    box-sizing: border-box;
+
+	display:block;
+	font-size:{%= fontSize %};
+	text-align:{%= textAlign %};
+    color:rgb({%= headerFontColour %});
+	padding:{%= responseTextPadding %};
+	line-height:{%= responseTextLineHeight %};
 }

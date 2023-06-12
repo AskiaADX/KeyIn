@@ -374,7 +374,7 @@
 
 					if ( $.inArray( String(parseInt($(this).data('index'))), otherRIDarray ) != -1 ) {
 						var otherID = $.inArray( String(parseInt($(this).data('index'))), otherRIDarray );
-						$(this).parents('.controlContainer').find('.otherText').eq(otherID);
+						$(this).parents('.controlContainer').find('.otherText').eq(otherID).show();
 					}
 
 				} else {
