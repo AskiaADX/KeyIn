@@ -46,7 +46,7 @@
 
 #### v3.0.2
 
-- Deselcetion of single answers
+- Deselection of single answers
 
 #### v3.1.0
 
@@ -57,3 +57,6 @@
 
 - Semi-open support
 - Headers support
+
+#### v4.0.1
+- 
