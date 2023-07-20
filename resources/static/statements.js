@@ -206,7 +206,7 @@
 					var otherID = $.inArray( String(parseInt($target.data('index'))), otherRIDarray );
 					$(this).find('.otherText').hide();
 					$(this).find('.otherText').val('');
-					$( '#'+otherQIDarray[otherID] ).val('');
+					if(otherQIDarray[otherID] != '') $( '#'+otherQIDarray[otherID] ).val('');
 				}
 
 			} else {
@@ -230,7 +230,7 @@
 							//FIX
 							var otherID = $.inArray( String(parseInt($(this).data('index'))), otherRIDarray );
 							$(this).find('.otherText').val('');
-							$( '#'+otherQIDarray[otherID] ).val('');
+							if(otherQIDarray[otherID] != '') $( '#'+otherQIDarray[otherID] ).val('');
 							$(this).find('.otherText').hide();
 						}
 					});
@@ -245,7 +245,7 @@
 						//FIX
 						$(this).parents('.controlContainer').find('.otherText').val('');
 						for (i = 0; i < otherQIDarray.length; ++i) {
-							$( '#'+otherQIDarray[i] ).val('');
+							if(otherQIDarray[i] != '') $( '#'+otherQIDarray[i] ).val('');
 						}
 						$(this).parents('.controlContainer').find('.otherText').hide();
 					} else  $(this).parents('.controlContainer').find('.otherText').show();
