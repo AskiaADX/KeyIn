@@ -59,4 +59,7 @@
 - Headers support
 
 #### v4.0.1
-- 
+- Simple fix when exclusive responsess
+
+#### v4.0.2 
+- Fixed, Hide othertext when exclusive response selected
