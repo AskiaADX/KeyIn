@@ -247,8 +247,10 @@
 						for (i = 0; i < otherQIDarray.length; ++i) {
 							if(otherQIDarray[i] != '') $( '#'+otherQIDarray[i] ).val('');
 						}
-					}
-					$(this).parents('.controlContainer').find('.otherText').hide();
+						$(this).parents('.controlContainer').find('.otherText').hide();						
+					} else 
+						$(this).parents('.controlContainer').find('.otherText').hide(),
+							$(this).find('.otherText').show(); 
 
 				}
 				$target.addClass('selected');
