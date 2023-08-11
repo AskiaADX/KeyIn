@@ -52,10 +52,10 @@ $(window).on('load', function() {
 			range: '{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourPrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %};{%= CurrentADC.PropValue("responseColourRangePrimary") %}',
 		{% EndIF %}
 		items : [
-			{% IF CurrentQuestion.Type = "single" Then %}
-				{%:= CurrentADC.GetContent("dynamic/standard_single.js").ToText()%}
-			{% ElseIf CurrentQuestion.Type = "multiple" Then %}
-				{%:= CurrentADC.GetContent("dynamic/standard_multiple.js").ToText()%}
+			{% IF (CurrentQuestion.Type = "single" OR CurrentQuestion.Type = "single-loop") Then %}
+				{%:= CurrentADC.GetContent("dynamic/standard_single.js").ToText() %}
+			{% ElseIf (CurrentQuestion.Type = "multiple" OR CurrentQuestion.Type = "multiple-loop") Then %}
+				{%:= CurrentADC.GetContent("dynamic/standard_multiple.js").ToText() %}
 			{% EndIF %}
 		]
 	});
@@ -67,9 +67,9 @@ $(window).on('load', function() {
 		deselectionEnabled : {%= (CurrentADC.PropValue("deselectionEnabled") = "1") %},
 		codeViewerDisplay : '{%= CurrentADC.PropValue("codeViewerDisplay") %}',
 		items : [
-			{% IF CurrentQuestion.Type = "single" Then %}
+			{% IF (CurrentQuestion.Type = "single" OR CurrentQuestion.Type = "single-loop") Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_single.js").ToText()%}
-			{% ElseIf CurrentQuestion.Type = "multiple" Then %}
+			{% ElseIf (CurrentQuestion.Type = "multiple" OR CurrentQuestion.Type = "multiple-loop") Then %}
 				{%:= CurrentADC.GetContent("dynamic/standard_multiple.js").ToText()%}
 			{% EndIF %}
 		]
