@@ -63,3 +63,6 @@
 
 #### v4.0.2 
 - Fixed, Hide othertext when exclusive response selected
+
+#### v4.0.3
+- Fixed error when the question is loop with selection
