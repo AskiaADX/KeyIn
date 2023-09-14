@@ -195,24 +195,17 @@
 
 			if ($target.hasClass('selected')) {
 				// Un-select
-
 				$target.removeClass('selected');
-				//$input.prop('checked', false);
 				currentValue = removeValue(currentValue, value);
-
 				if ( $.inArray( String(parseInt($target.data('index'))), otherRIDarray ) != -1 ) {
-
 					//FIX
 					var otherID = $.inArray( String(parseInt($target.data('index'))), otherRIDarray );
 					$(this).find('.otherText').hide();
 					$(this).find('.otherText').val('');
 					if(otherQIDarray[otherID] != '') $( '#'+otherQIDarray[otherID] ).val('');
 				}
-
 			} else {
-
 				// Select
-
 				if (!isExclusive) {
 
 					// Check if any exclusive
@@ -258,7 +251,7 @@
 
 			// Update the value
 			$input.val(currentValue);
-
+			
             if (window.askia
                 && window.arrLiveRoutingShortcut
                 && window.arrLiveRoutingShortcut.length > 0

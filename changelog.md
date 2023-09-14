@@ -66,3 +66,5 @@
 
 #### v4.0.3
 - Fixed error when the question is loop with selection
+
+ v4.1.0 - Added the support for preliminary-loop questions

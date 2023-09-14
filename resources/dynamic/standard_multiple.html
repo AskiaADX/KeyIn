@@ -13,6 +13,7 @@ Dim ar = CurrentQuestion.AvailableResponses
 Dim i
 Dim j
 Dim k
+Dim x
 Dim flowDirection
 Dim isHeader
 
@@ -28,8 +29,15 @@ For i = 1 to ar.Count
         otherIDarray.Push(ar[i].Index)
     Endif
 Next i
+
+Dim inputAnswers = ""
+
+For x = 1 To CurrentQuestion.Answers.Count
+    inputAnswers = inputAnswers + CurrentQuestion.Answers[x].InputValue().ToString() + On(x < CurrentQuestion.Answers.Count,",","")
+Next x
+
 %}
-<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%= CurrentQuestion.InputValue()%}" />
+<input type="hidden" name="{%= CurrentQuestion.InputName("list")%}" value="{%:= inputAnswers %}" />
 {%
 
 Dim numberOfColumns = CurrentADC.PropValue("columns").ToNumber()
