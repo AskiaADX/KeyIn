@@ -26,7 +26,7 @@ $(window).on('load', function() {
 		imageAlign : '{%= CurrentADC.PropValue("imageAlign") %}',
 		imageWidth : 100,
 		imageHeight : 100,
-		isMultiple: {%= (CurrentQuestion.Type = "multiple") %},
+		isMultiple: {%= (CurrentQuestion.Type = "multiple" OR CurrentQuestion.Type = "multiple-loop") %},
 		controlWidth : '{%= CurrentADC.PropValue("controlWidth") %}',
 		columns: {%= CurrentADC.PropValue("columns") %},
 		maxWidth : '{%= CurrentADC.PropValue("maxWidth") %}',
